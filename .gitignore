@@ -16,6 +16,9 @@ local.properties
 .settings/
 .loadpath
 
+# wordpress-config
+wp-config.php
+
 # External tool builders
 .externalToolBuilders/
 
