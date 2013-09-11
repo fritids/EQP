@@ -1,0 +1,64 @@
+.plugin #providers .provider {
+ width: 25px !important;
+}
+
+.plugin #providers .provider .name {
+ display: none !important;
+}
+
+.plugin #providers .provider .button {
+ background: url("ui/sprite_24.png") no-repeat scroll 0 0 transparent !important;
+ height: 24px !important;
+ width: 25px !important;
+}
+
+.plugin #providers .provider #button_facebook {
+ background-position: -62px 50% !important;
+}
+
+.plugin #providers .provider #button_google {
+ background-position: -32px 50% !important;
+}
+
+.plugin #providers .provider #button_twitter {
+ background-position: -3px 50% !important;
+}
+
+.plugin #providers .provider #button_yahoo {
+ background-position: -2px 50% !important;
+}
+
+.plugin #providers .provider #button_linkedin {
+ background-position: -142px 50% !important;
+}
+
+.plugin #providers .provider #button_livejournal {
+ background-position: -122px 50% !important;
+}
+
+.plugin #providers .provider #button_openid {
+ background-position: -102px 50% !important;
+}
+
+.plugin #providers .provider #button_wordpress {
+ background-position: -22px 50% !important;
+}
+
+.plugin #providers .provider #button_hyves {
+ background-position: -162px 50% !important;
+}
+
+.plugin #providers .provider #button_paypal {
+ background-position: -82px 50% !important;
+}
+
+.plugin #providers .provider #button_vkontakte {
+ background-position: -42px 50% !important;
+}
+
+.plugin .footer {
+ display: none;
+ left: 2px !important;
+ line-height:11px !important;
+ margin-top:1px;
+}

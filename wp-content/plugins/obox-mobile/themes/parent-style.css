@@ -1,0 +1,325 @@
+/*--------------------------------------------------------------------------------------------------------------------------*/
+/*- RESET - Courtesy of Eric Meyer's CSS Reset Awesomeness: http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/ ---*/
+/*--------------------------------------------------------------------------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td{
+margin: 0; padding: 0; border: 0; outline: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline;
+-webkit-text-size-adjust: none;
+}
+/* remember to define focus styles! */
+:focus {outline: 0;}
+body {line-height: 1; color: black; background: white;}
+ol, ul {list-style: none;}
+/* tables still need 'cellspacing="0"' in the markup */
+table {border-collapse: separate;border-spacing: 0;}
+caption, th, td {text-align: left;font-weight: normal;}
+blockquote:before, blockquote:after,
+q:before, q:after {content: "";}
+blockquote, q {quotes: "" "";}
+
+/*-------------------------------------------------------------------------------------------*/
+/*- SETUP STD CLASSES -----------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+body{margin: 0px; padding: 0px; font-size: 14px; font-family: Helvetica, Arial, sans-serif; line-height: 1.6em;
+		-webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;}
+		
+h1, h2, h3, h4, h5, h6{margin: 0px 0px 5px; padding: 0px 0px 5px; font-weight: bold;}
+h1{font-size: 35px; line-height: 37px;}
+h2{font-size: 25px; line-height: 29px;}
+h3{padding-bottom: 5px; margin-bottom: 5px; font-size: 19px; line-height: 22px;}
+h4{font-size: 14px; line-height: 16px; margin-bottom: 8px;}
+h5{font-size: 12px; line-height: 15px; margin-bottom: 8px;}
+h6{font-size: 10px; line-height: 13px; margin-bottom: 8px;}
+
+p{margin-bottom: 12px;}
+textarea, input{font-family: Arial, Helvetica, sans-serif; font-size: 12px;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- GLOBAL CLASSES --------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+/*--- Links ---*/
+a{text-decoration: none;}
+	
+/*--- Layouts ---*/
+.no_bg{background-image: none;}
+.clearboth{clear: both}
+.floatleft{float: left;}
+.floatright{float: right;}
+.floatright{float:right;}
+.no_display{display: none;}
+
+strong{font-weight: bold;}
+em{font-style: italic;}
+
+div.wp-caption{width: 312px !important; padding: 10px 4px; background: #fff; -webkit-border-radius: 5px; -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3); text-align: center;}
+	div.wp-caption img{max-width: 300px; text-align: center;}
+	div.wp-caption p{padding: 0px 10px; margin-top: 10px; font-style: italic;}
+
+.alignleft{float: none; clear: both; margin: 0px 0px 10px 0px !important;}
+.alignright{float: none; clear: both; margin: 0px 0px 10px 0px !important;}
+.aligncenter{text-align: center !important; margin: 0px 0px 10px 0px !important;}
+
+.post img, .post iframe, .post-container img, .post-container iframe {width: 100%;}
+
+/*-------------------------------------------------------------------------------------------*/
+/*- GENERAL LAYOUT --------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+#header-container{height: 44px; overflow: hidden; position: relative; top: 0px; display: block; z-index: 11;}
+	
+#menu-container{width: 100%; position: absolute; z-index: 10;}
+
+#content-container{position: relative; z-index: 0;}
+
+#footer-container{clear: both;}
+#footer{padding: 10px 15px 10px; overflow: hidden;}
+	
+	
+/*-------------------------------------------------------------------------------------------*/
+/*- HEADER ----------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+.logo{float: left; width: 259px; padding: 0px 0px 0px 10px; margin: 0px;}
+.logo h1{margin: 0px; padding: 4px 0px; font-size: 16px;}
+.logo-mark{float: left; display: block; width: 32px; height: 32px; margin: 5px 8px 0px 0px; position: relative; overflow: hidden;}
+
+.drop-down{float: right; display: block; width: 44px; height: 44px; text-indent: -9999px; overflow: hidden;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- SEARCH LAYOUT ---------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+.search{display: none; clear: both; padding: 15px 15px;}
+.search input.search-input{clear: both; width: 184px; padding: 6px 8px; margin: 0px auto; font-size: 14px; line-height: 20px;
+								-webkit-border-radius: 17px; }
+.search input[type=submit]{clear: both; width: 70px; padding: 8px 0px; text-align: center; margin-left: 10px; font-size: 13px; font-weight: bold;
+								-webkit-border-radius: 5px;}
+								
+/*-------------------------------------------------------------------------------------------*/
+/*- MENU LAYOUT -----------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+/*- NAVIGATION LIST -*/
+ul.navigation{display: none; position: relative; z-index: 8;}
+
+ul.navigation li{clear: both; font-size: 13px; margin: 0px;}
+ul.navigation li a{display: block; padding: 10px 15px; font-weight: bold; font-size: 15px;}
+
+ul.navigation ul li ul {text-indent: 10px;}
+ul.navigation ul li ul li ul{text-indent: 20px;}
+ul.navigation ul li ul li ul li ul{text-indent: 30px;}
+ul.navigation ul li ul li ul li ul li ul{text-indent: 40px;}
+
+li.header{position: relative;} 
+li.header .search-button{position: absolute; width: 28px; height: 22px; padding: 4px; float: right; top: 8px; right: 0px; margin: 0px; text-indent: -9999px;
+							-webkit-border-radius: none;}
+		
+/*-------------------------------------------------------------------------------------------*/
+/*- FEATURE AREA ----------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+.slider{margin-bottom: 0px; height: 190px; position: relative; overflow: hidden;}
+.slider ul{position: relative; width: 9999px; left: 0px;}
+.slider ul li {float: left; display: block; width: 300px; padding: 10px; position: relative;}
+.slider ul li h2{width: 280px; margin: 0px 10px; font-size: 15px; line-height: 18px; position: absolute; bottom: 20px; -webkit-border-radius: 3px;}
+.slider ul li h2 a{display: block; padding: 4px 10px 0px;}
+.slider ul li a.thumbnail img{display: block; overflow: hidden; -webkit-border-radius: 4px; max-width: 95%;}
+.slider .post-count{float: right; padding: 1px 3px 1px 3px; position: absolute; top: 20px; right: 20px; z-index: 4; font-size: 10px;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- HOME PAGE LAYOUT ------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+	.page-title{padding: 15px; margin: 0px; font-size: 17px; line-height: 22px;}
+	.post-list li{clear: both; padding: 10px; position: relative;}
+	
+	
+	/*- COMMENT BUBBLE ---*/
+	.comment-count{display: inline-block; padding: 2px; position: absolute; top: 5px; left: 5px;
+					-webkit-border-radius: 9px;}									
+	.comment-count span{display: block; padding: 2px 5px; font-weight: bold; font-size: 11px; line-height: 12px; 
+							-webkit-border-radius: 8px;}
+								
+								
+	/*- POST LIST CONTENT STYLING ---*/							
+	.post-list li a.post-thumbnail{float: left; display: block; width: 55px; height: 55px; margin-right: 8px; overflow: hidden;
+									-webkit-border-radius: 3px;}
+	.post-list li a.post-thumbnail img{max-width: 100%; -webkit-border-radius: 2px; display: block;}
+		
+	.post-list li .post-title{margin: 0px 0px 3px 65px; font-size: 17px; line-height: 21px;}
+	.post-list li .date{margin: 0px 0px 4px 65px; padding: 0px; font-weight: lighter;}
+	.post-list li .copy{margin-left: 65px; font-size: 13px; line-height: 18px;}
+			
+	/*- NO IMAGE ---*/
+	.post-list li.no-image .post-title{margin-left: 3px;}
+	.post-list li.no-image .date{margin-left: 3px;}
+	.post-list li.no-image .copy{margin-left: 3px;}
+	.post-list li.no-image .copy p{margin-left: 0px; padding: 0px;}
+	.post-list li.no-image .comment-count{left: auto; right: 5px;}
+			
+	/*- LARGE IMAGE ---*/
+	.post-list li.large a.post-thumbnail{width: auto; max-width: 420px; height: auto; margin: 0px 10px 8px -1px;}
+		.post-list li.large a.post-thumbnail img{max-width: 100%;}
+		
+	.post-list li.large .post-title, .post-list li.large .date, .post-list li.large .copy{margin-left: 0px;}
+		
+	/*- ARCHIVES ---*/
+	.archive-list li{clear: both; padding: 10px 10px; position: relative;}
+	.archive-list li.month{padding: 0px 10px; font-size: 11px; font-weight: bold; text-transform: uppercase;}
+	.archive-list li .post-title{margin: 0px 0px 3px; font-size: 14px; line-height: 17px;}
+	.archive-list li .date{margin: 0px; padding: 0px; font-weight: lighter;}
+	
+	/*- LOAD MORE ---*/
+	li.load-more a{display: block; padding: 5px 8px 5px 8px; font-size: 14px; font-weight: bold; text-align: center;
+					-webkit-border-radius: 5px;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- POSTS CLASSES ---------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+
+	.post .post-icon.quote{display: block; clear: both;}
+	.post div.quote{padding-left: 40px; display: block; float: none;}
+	.post div.quote cite{font-size: 12px; font-style: italic;}
+	.post div.quote cite:before{content: "~ ";}
+
+	/*------------------------------*/
+	/*- POST TITLE META ------------*/
+	.title-meta{padding: 15px;}
+	h3.post-title{padding: 0px; margin-bottom: 5px; font-size: 22px; line-height: 25px;}
+	h3.post-title a{}
+	h5.date{padding: 0px; margin-bottom: 0px; font-size: 10px;}
+
+	.no-margin, .no-margin .post-title, .no-margin .date{margin-left: 0px !important;}
+
+	/*-------------------------------*/
+	/*- WOO TUMBLOG CODE ------------*/
+	.post .post-icon a {right: auto; left: 0px; top: -8px!important;}
+	.post-type-image img {width: 100%; -webkit-border-radius: 3px;}
+	
+	/*------------------------------*/
+	/*- POST FEATURE IMAGE ---------*/
+	.post-image{padding: 10px; position: relative;}
+	.post-image img{max-width: 100%; display: block; -webkit-border-radius: 3px;}
+			
+	/*------------------------------*/
+	/*- POST CONTENT ---------------*/
+	.post-content{padding: 15px;}
+
+		/*------------------------------------------------------------------------------------*/
+		/*- RESET SOME CLASSES FOR THE COPY AFTER CLEARING EVERYTHING AT THE TOP OF THE CSS  -*/
+		.copy{font-size: 14px; line-height: 22px;}
+		.copy ol, .copy ul{list-style: disc; margin: 0px 0px 10px 30px; line-height: 22px;}
+		.copy ol{list-style: decimal;}
+		.copy code, .copy pre{}
+		.copy img{clear: both; float: none; max-width: 100%; border: 1px solid red;}
+		.copy blockquote{padding: 0px 0px 0px 25px; margin: 20px 0; font-style: italic; font-family: Georgia, "Times New Roman", Times, serif;}
+
+
+	/*------------------------------*/
+	/*- POST PAGE META -------------*/
+	.post-meta{padding: 5px 15px; font-size: 11px; font-weight: bold;}
+	.post-meta li{float: left; margin-right: 8px; padding: 0px;}
+			
+	.social-links {float: left !important; margin: 0px !important;}
+	.social-twitter, .social-google, .social-facebook {float: left; margin-right: 10px;}	
+	
+			
+	/*----------------------------*/
+	/*- PAGINATION ---------------*/
+	.pagination{width: 100%; clear: both; padding-top: 10px; padding-right: 10px; float: right;}
+	.pagination li{float: right;}
+	.pagination li.page-count{margin-right: 15px; padding-left: 20px; padding-top: 1px; font-size: 12px; font-weight: 600;}
+	.pagination .next a, .pagination .previous a{float: right; display: block; width: 30px; padding: 6px 14px; margin: 0px 4px 10px 0px; overflow: hidden;
+													font-size: 12px; font-weight: bold; text-align: center; line-height: 1em;
+													-webkit-border-radius: 5px;}
+	
+
+/*-------------------------------------------------------------------------------------------*/
+/*- COMMENTS --------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+h3.section-title{padding: 15px; margin: 0px; font-size: 17px;}
+
+.comment-container{padding: 0px;}
+.comment{padding: 10px 10px 10px;}
+
+.comment-avatar{float: left; width: 45px; margin-right: 10px; position: relative;}
+.comment-avatar{-webkit-border-radius: 3px;}
+.comment-avatar img{-webkit-border-radius: 2px;}
+
+.comment-post{margin-left: 55px;}
+.comment-post h4.comment-name{margin: 0px 0px 5px; padding: 0px; font-weight: bold;}
+.comment-post h5.date{float: right; padding-bottom: 0px; margin-bottom: 0px; font-weight: lighter;}
+.comment-post .reply-to-comment{text-transform: uppercase; font-size: 10px;}
+
+li.comment:last-child{}
+
+
+/*--------------------------------------------------------*/
+/*- THREADED COMMENTS - ITS TIME TO THREAD THIS BEAST ----*/
+.threaded-comments{clear: both; margin-left: 55px; -webkit-border-radius: 5px;}
+
+.threaded-comments li.comment{margin: 0px; padding: 10px;}
+.threaded-comments li.comment:first-child{-webkit-border-top-right-radius: 4px; -webkit-border-top-left-radius: 4px;}
+.threaded-comments li.comment:last-child{margin-bottom: 0px; 
+										-webkit-border-bottom-right-radius: 4px; -webkit-border-bottom-left-radius: 4px;}
+
+.threaded-comments .comment-meta{clear: both; float: none; width: auto;}
+.threaded-comments .comment-meta h4.comment-name{float: left; margin-bottom: 0px;}
+.threaded-comments .comment-meta h5.date{float: right; margin: 2px 0px 0px;}
+
+.threaded-comments .comment-post{clear: both; float: none; width: auto; margin: 0px;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- POST A COMMENT --------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+.comment_form{padding: 10px;}
+.comment_form p{clear: both; margin-bottom: 10px;}
+.comment_form label{float: left; margin: 2px 0px 0px 20px; font-size: 12px; font-weight: bold; text-align: right;}
+.comment_form input[type=text]{float: left; clear: left; width: 192px; padding: 4px; margin: 0px 0px 10px; font-size: 14px; line-height: 15px;
+								-webkit-border-radius: 5px;}
+					
+.comment_form textarea{clear: both; width: 290px; height: 120px; padding: 4px; margin: 0px 0px 0px; font-size: 14px; line-height: 20px;
+						-webkit-border-radius: 5px;}
+
+input.submit_button{clear: both; width: 100%; padding: 8px 0px; font-size: 14px; font-weight: bold;
+					-webkit-border-radius: 5px;}
+
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- ADVERT ----------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+.post-advert{display: block; width: 100%; margin: 0px 0px 0px 0px;}
+.post-advert a{margin: auto;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- FOOTER ----------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+#footer{font-size: 11px; font-weight: bold; overflow: hidden;}
+#footer p{float: left; margin: 0px; padding: 0px;}
+#footer a{float: right; margin: 0px; padding: 0px;}
+#footer p.obox{float: none; clear: both; padding-top: 3px; margin-top: 25px; text-align: center; font-size: 10px;}
+#footer p.obox a{float: none;}
+
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+/*- CLEARFIX --- * I prefer not to touch this code, I don't recommend you do so either, it works... so don't fix whats working ;) * -*/
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+/* http://sonspring.com/journal/clearing-floats */
+html body * span.clear,
+html body * div.clear,
+html body * li.clear,
+html body * dd.clear
+{background: none; border: 0; clear: both; display: block; float: none; font-size: 0; list-style: none;	margin: 0; padding: 0; overflow: hidden; visibility: hidden; width: 0; height: 0;}
+
+/* http://www.positioniseverything.net/easyclearing.html */
+.clearfix:after{clear: both; content: '.'; display: block; visibility: hidden; height: 0;}
+.clearfix{display: inline-block;}
+* html .clearfix{height: 1%;}
+.clearfix{display: block;}

@@ -1,0 +1,191 @@
+
+
+<!------------------------------------------------------------------------ Flujo Fotos --------------------------------------->
+
+<div class="clearfix inLightBox">
+    <h2>Hola Ester Hidalgo</h2>
+    <p>Texto que explique en qué consiste el proceso de publicación de contenidos en el Quinto Poder de manera simple y directa</p>
+    <form id="publicationForm" action="" method="post" enctype="multipart/form-data" >
+        
+        <label for="postTitle">Titulo de la Foto</label>
+        <input type="text" name="postTitle" value="" placeholder="Titulo" required>
+        
+        <p><strong>Origen del Contenido</strong></p>
+        <ul>
+            <li>
+                <span><input type="radio" id="fromPc" name="origenFoto" value="fromPc" ></span>
+                <label for="fromPc">Desde archivo en tu computador</label>
+            </li>
+            <li>
+                <span><input type="radio" id="fromUrl" name="origenFoto" value="fromUrl" ></span>
+                <label for="fromUrl">Desde URL externa</label>
+            </li>
+        </ul>
+        <label for="fotoUpload">Desde tu Computador</label>
+        <input type="file" name="fotoUpload" >
+        
+        <label for="postContent">Descripción de tu foto (opcional)</label>
+        <textarea name="postContent" placeholder="Descripción de la Foto" ></textarea>
+        
+        <label for="postCategory">Tema relacionado</label>
+        <select name="postCategory" >
+            <option value="" >Selecciona</option>
+        </select>
+        
+        <p>
+            <span><input type="checkbox" name="termsConditions" value="acepto" required ></span>
+            <label for="termsConditions">Acepto los <a href="/condiciones-de-uso" title="Términos y Condiciones" >Términos y Condiciones</a></label>
+        </p>
+        <input type="hidden" name="postType" value="post">
+        <input type="hidden" name="tipoEntrada" value="fotos">
+        <input type="hidden" name="postStatus" value="published">
+        <input type="hidden" name="postAuthor" value="">
+        <input type="submit" name="submit" value="Publicar">
+    </form>
+</div>
+
+
+<!------------------------------------------------------------------------ Flujo Videos --------------------------------------->
+
+<div class="clearfix inLightBox">
+    <h2>Hola Ester Hidalgo</h2>
+    <p>Texto que explique en qué consiste el proceso de publicación de contenidos en el Quinto Poder de manera simple y directa</p>
+    <form id="publicationForm" action="" method="post" enctype="multipart/form-data" >
+        
+        <label for="postTitle">Titulo del Video</label>
+        <input type="text" name="postTitle" value="" placeholder="Titulo" required>
+        
+        <p>Puedes incluir URLs de portales de alojamiento de vídeos como YouTube o Vimeo, o la etiqueta “embed” tal y como la proporciona cualquier sitio de vídeo/flash. (ie. http://www.youtube.com/watch?v=txqiwrbYGrs)</p>
+        <label for="videoUpload">Desde URL externa</label>
+        <input type="text" name="videoUpload" value="" required placeholder="http://www.youtube.com/watch?v=txqiwrbYGrs">
+        
+        <label for="postContent">Descripción de tu video (opcional)</label>
+        <textarea name="postContent" placeholder="Descripción de la Video" ></textarea>
+        
+        <label for="postCategory">Tema relacionado</label>
+        <select name="postCategory" >
+            <option value="" >Selecciona</option>
+        </select>
+        
+        <p>
+            <span><input type="checkbox" name="termsConditions" value="acepto" required ></span>
+            <label for="termsConditions">Acepto los <a href="/condiciones-de-uso" title="Términos y Condiciones" >Términos y Condiciones</a></label>
+        </p>
+        <input type="hidden" name="postType" value="post">
+        <input type="hidden" name="tipoEntrada" value="videos">
+        <input type="hidden" name="postStatus" value="published">
+        <input type="hidden" name="postAuthor" value="">
+        <input type="submit" name="submit" value="Publicar">
+    </form>
+</div>
+
+
+<!------------------------------------------------------------------------ Flujo Acciones --------------------------------------->
+
+<div class="clearfix inLightBox">
+    <h2>Hola Ester Hidalgo</h2>
+    <p>Las acciones son petitorios en línea y podrás solicitar firmas para que personas se adhieran a tu acción</p>
+    <form id="publicationForm" action="" method="post" enctype="multipart/form-data" >
+        
+        <label for="postTitle">Titulo de tu acción</label>
+        <input type="text" name="postTitle" value="" placeholder="Titulo" required>
+        
+        <label for="postContent">Descripción de tu Acción</label>
+        <textarea name="postContent" placeholder="Descripción de la Acción" required ></textarea>
+        
+        <label for="postCategory">Tema relacionado</label>
+        <select name="postCategory" >
+            <option value="" >Selecciona</option>
+        </select>
+        
+        <label for="actionGoal">Titulo de tu acción</label>
+        <input type="text" name="actionGoal" value="" placeholder="2000" required>
+        
+        <p>
+            <span><input type="checkbox" name="termsConditions" value="acepto" required ></span>
+            <label for="termsConditions">Acepto los <a href="/condiciones-de-uso" title="Términos y Condiciones" >Términos y Condiciones</a></label>
+        </p>
+        <input type="hidden" name="postType" value="post_acciones">
+        <input type="hidden" name="postStatus" value="published">
+        <input type="hidden" name="postAuthor" value="">
+        <input type="submit" name="submit" value="Publicar">
+    </form>
+</div>
+
+
+
+<!------------------------------------------------------------------------ Flujo Entradas --------------------------------------->
+
+<div class="clearfix inLightBox">
+    <h2>Hola Ester Hidalgo</h2>
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+    <form id="publicationForm" action="" method="post" enctype="multipart/form-data" >
+        
+        <label for="postTitle">Titulo de tu Entrada</label>
+        <input type="text" name="postTitle" value="" placeholder="Titulo" required>
+        
+        <label for="postBajada">Bajada (opcional)</label>
+        <input type="text" name="postBajada" value="" placeholder="Bajada" >
+        <span class="formHelp">Nro. máximo de caracteres: xxxx</span>
+        
+        <label for="postDestacado">Destacado (opcional)</label>
+        <textarea name="postDestacado" placeholder="Descripción de la Acción" ></textarea>
+        <span class="formHelp">Nro. máximo de caracteres: xxxx</span>
+        
+        <label for="postContent">Texto (obligatorio)</label>
+        <textarea id="entradaContentBox" name="postContent" placeholder="Descripción de la Acción" required ></textarea>
+        <span class="formHelp">Nro. máximo de caracteres: xxxx</span>
+        
+        <label for="postCategory">Tema relacionado</label>
+        <select name="postCategory" >
+            <option value="" >Selecciona</option>
+        </select>
+        
+        <p><strong>Foto de tu Entrada</strong></p>
+        <ul>
+            <li>
+                <span><input type="radio" id="fromPc" name="origenFoto" value="fromPc" checked ></span>
+                <label for="fromPc">Desde archivo en tu computador</label>
+            </li>
+            <li>
+                <span><input type="radio" id="fromUrl" name="origenFoto" value="fromUrl" ></span>
+                <label for="fromUrl">Desde URL externa</label>
+            </li>
+        </ul>
+        <label for="fotoUpload">Desde tu Computador</label>
+        <input type="file" name="fotoUpload" >
+        
+        
+        <label for="videoUpload">Video de tu Entrada (opcional)</label>
+        <p>Puedes incluir URLs de portales de alojamiento de vídeos como YouTube o Vimeo, o la etiqueta “embed” tal y como la proporciona cualquier sitio de vídeo/flash. (ie. http://www.youtube.com/watch?v=txqiwrbYGrs)</p>
+        <input type="text" name="videoUpload" value="" required placeholder="http://www.youtube.com/watch?v=txqiwrbYGrs">
+        
+        <p>
+            <span><input type="checkbox" name="termsConditions" value="acepto" required ></span>
+            <label for="termsConditions">Acepto los <a href="/condiciones-de-uso" title="Términos y Condiciones" >Términos y Condiciones</a></label>
+        </p>
+        <input type="hidden" name="postType" value="post">
+        <input type="hidden" name="tipoEntrada" value="entradas">
+        <input type="hidden" name="postStatus" value="draft">
+        <input type="hidden" name="postAuthor" value="">
+        <input type="submit" name="submit" value="Publicar">
+    </form>
+</div>
+
+
+
+
+<!------------------------------------------------------------------------ Flujo After --------------------------------------->
+
+<div class="clearfix inLightBox">
+    <h2>Imagen Publicándose...</h2>
+    <p>Texto que explique en qué consiste el proceso de publicación de contenidos en el Quinto Poder de manera simple y directa</p>
+<!--    Ajax Loader-->
+</div>
+
+<div class="clearfix inLightBox">
+    <h2>¡Felicitaciones Ester Hidalgo!</h2>
+    <p>Tu foto ha sido publicada exitosame.</p>
+<!--    thumbnail-->
+    <a href="#" title="Ver Publicación" >Ver Publicación</a>
+</div>

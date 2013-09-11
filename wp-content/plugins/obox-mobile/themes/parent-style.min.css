@@ -1,0 +1,132 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;-webkit-text-size-adjust:none;margin:0;padding:0}
+:focus{outline:0}
+body{color:#000;background:#FFF;font-size:14px;font-family:Helvetica, Arial, sans-serif;line-height:1.6em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;margin:0;padding:0}
+ol,ul{list-style:none}
+table{border-collapse:separate;border-spacing:0}
+caption,th,td{text-align:left;font-weight:400}
+blockquote:before,blockquote:after,q:before,q:after{content:""}
+h1,h2,h3,h4,h5,h6{font-weight:700;margin:0 0 5px;padding:0 0 5px}
+h1{font-size:35px;line-height:37px}
+h2{font-size:25px;line-height:29px}
+h3{padding-bottom:5px;margin-bottom:5px;font-size:19px;line-height:22px}
+h4{font-size:14px;line-height:16px;margin-bottom:8px}
+h5{font-size:12px;line-height:15px;margin-bottom:8px}
+h6{font-size:10px;line-height:13px;margin-bottom:8px}
+p{margin-bottom:12px}
+textarea,input{font-family:Arial, Helvetica, sans-serif;font-size:12px}
+a{text-decoration:none}
+.no_bg{background-image:none}
+.floatleft{float:left}
+.no_display{display:none}
+strong{font-weight:700}
+em{font-style:italic}
+div.wp-caption{width:312px!important;background:#fff;-webkit-border-radius:5px;-webkit-box-shadow:0 1px 2px rgba(0,0,0,0.3);text-align:center;padding:10px 4px}
+div.wp-caption img{max-width:300px;text-align:center}
+div.wp-caption p{margin-top:10px;font-style:italic;padding:0 10px}
+.aligncenter{text-align:center!important;margin:0 0 10px!important}
+.post img,.post iframe,.post-container img,.post-container iframe{width:100%}
+#header-container{height:44px;overflow:hidden;position:relative;top:0;display:block;z-index:11}
+#menu-container{width:100%;position:absolute;z-index:10}
+#content-container{position:relative;z-index:0}
+#footer{font-size:11px;font-weight:700;overflow:hidden;padding:10px 15px}
+.logo{float:left;width:259px;margin:0;padding:0 0 0 10px}
+.logo h1{font-size:16px;margin:0;padding:4px 0}
+.logo-mark{float:left;display:block;width:32px;height:32px;position:relative;overflow:hidden;margin:5px 8px 0 0}
+.drop-down{float:right;display:block;width:44px;height:44px;text-indent:-9999px;overflow:hidden}
+.search{display:none;clear:both;padding:15px}
+.search input.search-input{clear:both;width:184px;font-size:14px;line-height:20px;-webkit-border-radius:17px;margin:0 auto;padding:6px 8px}
+.search input[type=submit]{clear:both;width:70px;text-align:center;margin-left:10px;font-size:13px;font-weight:700;-webkit-border-radius:5px;padding:8px 0}
+ul.navigation{display:none;position:relative;z-index:8}
+ul.navigation li{clear:both;font-size:13px;margin:0}
+ul.navigation li a{display:block;font-weight:700;font-size:15px;padding:10px 15px}
+ul.navigation ul li ul{text-indent:10px}
+ul.navigation ul li ul li ul{text-indent:20px}
+ul.navigation ul li ul li ul li ul{text-indent:30px}
+ul.navigation ul li ul li ul li ul li ul{text-indent:40px}
+li.header{position:relative}
+li.header .search-button{position:absolute;width:28px;height:22px;float:right;top:8px;right:0;text-indent:-9999px;-webkit-border-radius:none;margin:0;padding:4px}
+.slider{margin-bottom:0;height:190px;position:relative;overflow:hidden}
+.slider ul{position:relative;width:9999px;left:0}
+.slider ul li{float:left;display:block;width:300px;position:relative;padding:10px}
+.slider ul li h2{width:280px;font-size:15px;line-height:18px;position:absolute;bottom:20px;-webkit-border-radius:3px;margin:0 10px}
+.slider ul li h2 a{display:block;padding:4px 10px 0}
+.slider ul li a.thumbnail img{display:block;overflow:hidden;-webkit-border-radius:4px;max-width:95%}
+.slider .post-count{float:right;position:absolute;top:20px;right:20px;z-index:4;font-size:10px;padding:1px 3px}
+.page-title{font-size:17px;line-height:22px;margin:0;padding:15px}
+.comment-count{display:inline-block;position:absolute;top:5px;left:5px;-webkit-border-radius:9px;padding:2px}
+.comment-count span{display:block;font-weight:700;font-size:11px;line-height:12px;-webkit-border-radius:8px;padding:2px 5px}
+.post-list li a.post-thumbnail{float:left;display:block;width:55px;height:55px;margin-right:8px;overflow:hidden;-webkit-border-radius:3px}
+.post-list li a.post-thumbnail img{max-width:100%;-webkit-border-radius:2px;display:block}
+.post-list li .post-title{font-size:17px;line-height:21px;margin:0 0 3px 65px}
+.post-list li .date{font-weight:lighter;margin:0 0 4px 65px;padding:0}
+.post-list li .copy{margin-left:65px;font-size:13px;line-height:18px}
+.post-list li.no-image .copy p{margin-left:0;padding:0}
+.post-list li.no-image .comment-count{left:auto;right:5px}
+.post-list li.large a.post-thumbnail{width:auto;max-width:420px;height:auto;margin:0 10px 8px -1px}
+.post-list li.large a.post-thumbnail img{max-width:100%}
+.post-list li.large .post-title,.post-list li.large .date,.post-list li.large .copy{margin-left:0}
+.archive-list li.month{font-size:11px;font-weight:700;text-transform:uppercase;padding:0 10px}
+.archive-list li .post-title{font-size:14px;line-height:17px;margin:0 0 3px}
+.archive-list li .date{font-weight:lighter;margin:0;padding:0}
+li.load-more a{display:block;font-size:14px;font-weight:700;text-align:center;-webkit-border-radius:5px;padding:5px 8px}
+.post .post-icon.quote{display:block;clear:both}
+.post div.quote{padding-left:40px;display:block;float:none}
+.post div.quote cite{font-size:12px;font-style:italic}
+.post div.quote cite:before{content:"~ "}
+h3.post-title{margin-bottom:5px;font-size:22px;line-height:25px;padding:0}
+h5.date{margin-bottom:0;font-size:10px;padding:0}
+.no-margin,.no-margin .post-title,.no-margin .date{margin-left:0!important}
+.post .post-icon a{right:auto;left:0;top:-8px!important}
+.post-type-image img{width:100%;-webkit-border-radius:3px}
+.post-image{position:relative;padding:10px}
+.post-image img{max-width:100%;display:block;-webkit-border-radius:3px}
+.copy{font-size:14px;line-height:22px}
+.copy ol,.copy ul{list-style:disc;line-height:22px;margin:0 0 10px 30px}
+.copy ol{list-style:decimal}
+.copy img{clear:both;float:none;max-width:100%;border:1px solid red}
+.copy blockquote{font-style:italic;font-family:Georgia, "Times New Roman", Times, serif;margin:20px 0;padding:0 0 0 25px}
+.post-meta{font-size:11px;font-weight:700;padding:5px 15px}
+.post-meta li{float:left;margin-right:8px;padding:0}
+.social-links{float:left!important;margin:0!important}
+.social-twitter,.social-google,.social-facebook{float:left;margin-right:10px}
+.pagination{width:100%;clear:both;padding-top:10px;padding-right:10px;float:right}
+.pagination li.page-count{margin-right:15px;padding-left:20px;padding-top:1px;font-size:12px;font-weight:600}
+.pagination .next a,.pagination .previous a{float:right;display:block;width:30px;overflow:hidden;font-size:12px;font-weight:700;text-align:center;line-height:1em;-webkit-border-radius:5px;margin:0 4px 10px 0;padding:6px 14px}
+h3.section-title{font-size:17px;margin:0;padding:15px}
+.comment-container{padding:0}
+.comment-avatar{float:left;width:45px;margin-right:10px;position:relative;-webkit-border-radius:3px}
+.comment-avatar img{-webkit-border-radius:2px}
+.comment-post{margin-left:55px}
+.comment-post h4.comment-name{font-weight:700;margin:0 0 5px;padding:0}
+.comment-post h5.date{float:right;padding-bottom:0;margin-bottom:0;font-weight:lighter}
+.comment-post .reply-to-comment{text-transform:uppercase;font-size:10px}
+.threaded-comments{clear:both;margin-left:55px;-webkit-border-radius:5px}
+.threaded-comments li.comment{margin:0;padding:10px}
+.threaded-comments li.comment:first-child{-webkit-border-top-right-radius:4px;-webkit-border-top-left-radius:4px}
+.threaded-comments li.comment:last-child{margin-bottom:0;-webkit-border-bottom-right-radius:4px;-webkit-border-bottom-left-radius:4px}
+.threaded-comments .comment-meta{clear:both;float:none;width:auto}
+.threaded-comments .comment-meta h4.comment-name{float:left;margin-bottom:0}
+.threaded-comments .comment-meta h5.date{float:right;margin:2px 0 0}
+.threaded-comments .comment-post{clear:both;float:none;width:auto;margin:0}
+.comment_form p{clear:both;margin-bottom:10px}
+.comment_form label{float:left;font-size:12px;font-weight:700;text-align:right;margin:2px 0 0 20px}
+.comment_form input[type=text]{float:left;clear:left;width:192px;font-size:14px;line-height:15px;-webkit-border-radius:5px;margin:0 0 10px;padding:4px}
+.comment_form textarea{clear:both;width:290px;height:120px;font-size:14px;line-height:20px;-webkit-border-radius:5px;margin:0;padding:4px}
+input.submit_button{clear:both;width:100%;font-size:14px;font-weight:700;-webkit-border-radius:5px;padding:8px 0}
+.post-advert{display:block;width:100%;margin:0}
+.post-advert a{margin:auto}
+#footer p{float:left;margin:0;padding:0}
+#footer a{float:right;margin:0;padding:0}
+#footer p.obox{float:none;clear:both;padding-top:3px;margin-top:25px;text-align:center;font-size:10px}
+#footer p.obox a{float:none}
+html body * span.clear,html body * div.clear,html body * li.clear,html body * dd.clear{background:none;border:0;clear:both;display:block;float:none;font-size:0;list-style:none;overflow:hidden;visibility:hidden;width:0;height:0;margin:0;padding:0}
+.clearfix:after{clear:both;content:'.';display:block;visibility:hidden;height:0}
+.clearfix{display:block}
+* html .clearfix{height:1%}
+.clearboth,#footer-container{clear:both}
+.floatright,.pagination li{float:right}
+.alignleft,.alignright{float:none;clear:both;margin:0 0 10px!important}
+.post-list li,.archive-list li{clear:both;position:relative;padding:10px}
+.post-list li.no-image .post-title,.post-list li.no-image .date,.post-list li.no-image .copy{margin-left:3px}
+.title-meta,.post-content{padding:15px}
+.comment,.comment_form{padding:10px}

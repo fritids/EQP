@@ -1,0 +1,9 @@
+copy.src.files=false
+copy.src.target=
+index.file=index.php
+remote.connection=elquintopoder-762796
+remote.permissions=true
+remote.upload=MANUALLY
+remote.upload.directly=true
+run.as=REMOTE
+url=http://elquintopoder.cl

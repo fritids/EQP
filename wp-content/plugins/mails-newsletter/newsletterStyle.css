@@ -1,0 +1,47 @@
+
+#newsletter-page-wrapper {
+    width: 100%;
+    text-align: center;
+}
+#newsletter-page-wrapper h1 {
+    line-height: 160%;
+}
+#newsletter-page-wrapper #emailsTable-holder {
+    width: 70%;
+    margin: 0 auto;
+}
+#newsletter-page-wrapper #emailsTable-holder table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid #E6E5E2;
+}
+#newsletter-page-wrapper #emailsTable-holder tr:nth-child(odd) {
+    background: #E6E5E2; 
+}
+#newsletter-page-wrapper #emailsTable-holder th,
+#newsletter-page-wrapper #emailsTable-holder td{
+    padding: 10px 0;
+}
+#newsletter-page-wrapper #emailsTable-holder a {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: #ca4242; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ca4242 0%, #8c2e2e 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ca4242), color-stop(100%,#8c2e2e)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ca4242 0%,#8c2e2e 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ca4242 0%,#8c2e2e 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ca4242 0%,#8c2e2e 100%); /* IE10+ */
+    background: linear-gradient(top,  #ca4242 0%,#8c2e2e 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ca4242', endColorstr='#8c2e2e',GradientType=0 ); /* IE6-9 */
+    border-radius:3px;
+    border: none;
+    text-align: center;
+    font-family: 'PT Sans', sans-serif;
+    padding: 10px 20px;
+    display: inline-block;
+    text-decoration: none;
+}#newsletter-page-wrapper #emailsTable-holder a:hover {
+    color: #000;
+}

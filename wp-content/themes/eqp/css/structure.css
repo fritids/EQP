@@ -1,0 +1,207 @@
+/*///////// COLUMNS ESTRUCTURE  //////*/
+
+
+ /*  Default Layout: 980px.
+        Columns: 60px
+        Gutters: 20px
+
+---------------------------------------------------------------------------------------- */
+
+ html { height: 100%; }
+ body { height: 100%; }
+ 
+.wrapper, .siteWrapper{
+    margin:auto;
+    width:980px;
+/*    overflow: hidden;*/
+}
+.siteWrapper{
+    display: block;
+    clear: both;
+}
+
+.col{
+    float:left;
+    margin-right: 20px;
+}
+.ultima{
+    margin-right: 0;
+}
+
+.one 				{ width: 60px; }
+.two 				{ width: 140px; }
+.three 				{ width: 220px; }
+.four                           { width: 300px; }
+.five 				{ width: 380px; }
+.six 				{ width: 460px; }
+.seven 				{ width: 540px; }
+.eight 				{ width: 620px; }
+.nine 				{ width: 700px; }
+
+aside{
+  float: left;  
+}
+.col.eight.inside.channel-entry{
+    width: 600px;
+    padding-left: 20px;
+}
+.showcased-actions-header .four{
+    width: 290px;
+}
+p.five{
+    width: 508px;
+}
+
+
+
+/*		Default Layout: 992px.
+		Gutters: 24px.
+		Outer margins: 48px.
+		Leftover space for scrollbars @1024px: 32px.
+                Uncomment for use
+------------------------------------------------------------------------------- */
+
+/*body {
+	width: 896px;
+	padding: 72px 48px 84px;
+	background: rgb(232,232,232);
+	color: rgb(60,60,60);
+	-webkit-text-size-adjust: 100%;  Stops Mobile Safari from auto-adjusting font-sizes
+}
+
+.one{
+    width: 68px;
+}
+.two{
+    width: 160px;
+}
+.three{
+    width: 252px;
+}
+.four{
+    width: 344px;
+}
+.five{
+    width: 436px;
+}
+.six{
+    width: 528px;
+}
+.seven{
+    width: 620px;
+}
+.eight{
+    width: 712px;
+}
+.nine{
+    width: 804px;
+}
+.ten{
+    width: 896px;
+}*/
+
+
+
+
+/*		Tablet Layout: 768px.
+		Gutters: 24px.
+		Outer margins: 28px.
+		Inherits styles from: Default Layout.
+                Uncomment for use
+-----------------------------------------------------------------
+cols    1     2      3      4      5      6      7      8
+px      68    160    252    344    436    528    620    712    */
+
+/*@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+	body {
+		width: 712px;
+		padding: 48px 28px 60px;
+	}
+        .one{
+            width: 68px;
+        }
+        .two{
+            width: 160px;
+        }
+        .three{
+            width: 252px;
+        }
+        .four{
+            width: 344px;
+        }
+        .five{
+            width: 436px;
+        }
+        .six{
+            width: 528px;
+        }
+        .seven{
+            width: 620px;
+        }
+        .eight{
+            width: 712px;
+        }
+}*/
+
+
+
+/*		Mobile Layout: 320px.
+		Gutters: 24px.
+		Outer margins: 34px.
+		Inherits styles from: Default Layout.
+                Uncomment for use
+------------------------------------------------------------------
+cols    1     2      3
+px      68    160    252    */
+
+/*@media only screen and (max-width: 767px) {
+
+	body {
+		width: 252px;
+		padding: 48px 34px 60px;
+	}
+        .one{
+            width: 68px;
+        }
+        .two{
+            width: 160px;
+        }
+        .three{
+            width: 252px;
+        }
+
+}*/
+
+
+
+/*		Wide Mobile Layout: 480px.
+		Gutters: 24px.
+		Outer margins: 22px.
+		Inherits styles from: Default Layout, Mobile Layout.
+                Uncomment for use
+------------------------------------------------------------ */
+
+/*@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+	body {
+		width: 436px;
+		padding: 36px 22px 48px;
+	}
+        .one{
+            width: 68px;
+        }
+        .two{
+            width: 160px;
+        }
+        .three{
+            width: 252px;
+        }
+        .four{
+            width: 344px;
+        }
+        .five{
+            width: 436px;
+        }
+
+}*/

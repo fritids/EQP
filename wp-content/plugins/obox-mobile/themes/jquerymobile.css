@@ -1,0 +1,518 @@
+/* corner rounding classes
+-----------------------------------------------------------------------------------------------------------*/
+.ui-overlay {
+	background: #666;
+	opacity: .5;
+	filter: Alpha(Opacity=50);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.ui-overlay-shadow {
+ -moz-box-shadow: 0px 0px 12px rgba(0,0,0,.6);
+ -webkit-box-shadow: 0px 0px 12px rgba(0,0,0,.6);
+	box-shadow: 0px 0px 12px rgba(0,0,0,.6);
+}
+.ui-shadow {
+ -moz-box-shadow: 0px 1px 4px rgba(0,0,0,.3);
+ -webkit-box-shadow: 0px 1px 4px rgba(0,0,0,.3);
+	box-shadow: 0px 1px 4px rgba(0,0,0,.3);
+}
+.ui-corner-tl {
+ -moz-border-radius-topleft: .6em;
+ -webkit-border-top-left-radius .6em;
+	border-top-left-radius: .6em;
+}
+.ui-corner-tr {
+ -moz-border-radius-topright: .6em;
+ -webkit-border-top-right-radius .6em;
+	border-top-right-radius: .6em;
+}
+.ui-corner-bl {
+ -moz-border-radius-bottomleft: .6em;
+ -webkit-border-bottom-left-radius .6em;
+	border-bottom-left-radius: .6em;
+}
+.ui-corner-br {
+ -moz-border-radius-bottomright .6em;
+ -webkit-border-bottom-right-radius: .6em;
+	border-bottom-right-radius: .6em;
+}
+.ui-corner-top {
+ -moz-border-radius-topleft: .6em;
+ -webkit-border-top-left-radius .6em;
+	border-top-left-radius: .6em;
+ -moz-border-radius-topright: .6em;
+ -webkit-border-top-right-radius .6em;
+	border-top-right-radius: .6em;
+}
+.ui-corner-bottom {
+ -moz-border-radius-bottomleft: .6em;
+ -webkit-border-bottom-left-radius .6em;
+	border-bottom-left-radius: .6em;
+ -moz-border-radius-bottomright .6em;
+ -webkit-border-bottom-right-radius: .6em;
+	border-bottom-right-radius: .6em;
+	}
+.ui-corner-right {
+ -moz-border-radius-topright: .6em;
+ -webkit-border-top-right-radius .6em;
+	border-top-right-radius: .6em;
+ -moz-border-radius-bottomright .6em;
+ -webkit-border-bottom-right-radius: .6em;
+	border-bottom-right-radius: .6em;
+}
+.ui-corner-left {
+ -moz-border-radius-topleft: .6em;
+ -webkit-border-top-left-radius .6em;
+	border-top-left-radius: .6em;
+ -moz-border-radius-bottomleft: .6em;
+ -webkit-border-bottom-left-radius .6em;
+	border-bottom-left-radius: .6em;
+}
+.ui-corner-all {
+ -moz-border-radius: 				.6em;
+ -webkit-border-radius: 				.6em;
+	border-radius: 						.6em;
+}
+
+
+
+/* Interaction cues
+-----------------------------------------------------------------------------------------------------------*/
+.ui-disabled {
+	opacity: 							.3;
+}
+.ui-disabled,
+.ui-disabled a {
+	cursor: default;
+}
+
+
+/* HD/"retina" sprite
+-----------------------------------------------------------------------------------------------------------*/
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+	
+	.ui-icon-plus, .ui-icon-minus, .ui-icon-delete, .ui-icon-arrow-r,
+	.ui-icon-arrow-l, .ui-icon-arrow-u, .ui-icon-arrow-d, .ui-icon-check,
+	.ui-icon-gear, .ui-icon-refresh, .ui-icon-forward, .ui-icon-back,
+	.ui-icon-grid, .ui-icon-star, .ui-icon-alert, .ui-icon-info, .ui-icon-home, .ui-icon-search, 
+	.ui-icon-checkbox-off, .ui-icon-checkbox-on, .ui-icon-radio-off, .ui-icon-radio-on {
+		background-image: url(jq-images/icons-36-white.png);
+	 -moz-background-size: 776px 18px;
+	 -o-background-size: 776px 18px;
+	 -webkit-background-size: 776px 18px;
+		background-size: 776px 18px;
+	}
+	.ui-icon-alt {
+		background-image: url(jq-images/icons-36-black.png);
+	}
+}
+
+/* Overlay / modal
+-----------------------------------------------------------------------------------------------------------*/
+
+.ui-overlay {
+	opacity: .5;
+	filter: Alpha(Opacity=50);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+
+/* unset box shadow in browsers that don't do it right
+-----------------------------------------------------------------------------------------------------------*/
+
+.ui-mobile-nosupport-boxshadow * {
+ -moz-box-shadow: none !important;
+ -webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+/* ...and bring back focus */
+.ui-mobile-nosupport-boxshadow .ui-focus {
+	outline-width: 2px;
+}/*
+* jQuery Mobile Framework
+* Copyright (c) jQuery Project
+* Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
+* Note: Code is in draft form and is subject to change 
+*/
+
+/* some unsets - more probably needed */
+.ui-mobile, .ui-mobile body { height: 100%; }
+.ui-mobile fieldset, .ui-page { padding: 0; margin: 0; }
+.ui-mobile a img, .ui-mobile fieldset { border: 0; }
+
+/* responsive page widths */
+.ui-mobile-viewport {  margin: 0; overflow-x: hidden; -webkit-text-size-adjust: none; -ms-text-size-adjust:none;}
+
+/* "page" containers - full-screen views, one should always be in view post-pageload */
+.ui-mobile [data-role=page], .ui-mobile [data-role=dialog], .ui-page { top: 0; left: 0; width: 100%; min-height: 100%; position: absolute; display: none; border: 0; } 
+.ui-mobile .ui-page-active { display: block; overflow: visible;}
+
+/*orientations from js are available */
+.portrait,
+.portrait .ui-page { min-height: 420px; }
+.landscape,
+.landscape .ui-page  { min-height: 300px; }
+
+/* loading screen */
+.ui-loading .ui-mobile-viewport { overflow: hidden !important; }
+.ui-loading .ui-loader { display: block;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#3c3c3c), to(#111)); /* Saf4+, Chrome */
+	background-image: -webkit-linear-gradient(top, #3c3c3c, #111); /* Chrome 10+, Saf5.1+ */
+	background-image:    -moz-linear-gradient(top, #3c3c3c, #111); /* FF3.6 */
+	background-image:     -ms-linear-gradient(top, #3c3c3c, #111); /* IE10 */
+	background-image:      -o-linear-gradient(top, #3c3c3c, #111); /* Opera 11.10+ */
+	background-image:         linear-gradient(top, #3c3c3c, #111);
+}
+/* loading icon */
+.ui-icon-loading {
+	background-image: url(jq-images/ajax-loader.png);
+	width: 40px;
+	height: 40px;
+ -moz-border-radius: 20px;
+ -webkit-border-radius: 20px;
+	border-radius: 20px;
+	background-size: 35px 35px;
+}
+
+.ui-loading .ui-page { overflow: hidden;  }
+.ui-loader {display: none; position: absolute; opacity: .85; z-index: 100; left: 50%; width: 200px; margin-left: -130px; margin-top: -35px; padding: 10px 30px; }
+.ui-loader h1 {color: #fff; font-size: 15px; text-align: center; }
+.ui-loader .ui-icon { position: static; display: block; opacity: .9; margin: 0 auto; width: 35px; height: 35px; background-color: transparent; }
+
+/*fouc*/
+.ui-mobile-rendering > * { visibility: hidden; }
+
+/*headers, content panels*/
+.ui-bar, .ui-body { position: relative; padding: .4em 15px;  overflow: hidden; display: block;  clear:both;  }
+.ui-bar { font-size: 16px; margin: 0; }
+.ui-header, .ui-footer { display: block; }
+.ui-page .ui-header, .ui-page .ui-footer { position: relative; }
+
+/*content area*/
+.ui-content { border-width: 0; overflow: visible; overflow-x: hidden;}
+.ui-page-fullscreen .ui-content { padding:0; }
+
+/* icons sizing */
+.ui-icon { width: 18px; height: 18px; }
+
+/* fullscreen class on ui-content div */
+.ui-fullscreen {  }
+.ui-fullscreen img { max-width: 100%; }
+
+/* non-js content hiding */
+.ui-nojs { position: absolute; left: -9999px; }
+/*
+* jQuery Mobile Framework
+* Copyright (c) jQuery Project
+* Dual licensed under the MIT (MIT-LICENSE.txt) or GPL (GPL-LICENSE.txt) licenses.
+*/
+.spin  {
+ -webkit-transform: rotate(360deg);
+ -webkit-animation-name: spin;
+ -webkit-animation-duration: 1s;
+ -webkit-animation-iteration-count:  infinite;
+}
+@-webkit-keyframes spin {
+	from {-webkit-transform: rotate(0deg);}
+  	to {-webkit-transform: rotate(360deg);}
+}
+
+/* Transitions from jQtouch (with small modifications): http://www.jqtouch.com/
+Built by David Kaneda, modified by Marc Perel at Obox
+*/
+
+.current {
+    display: block !important;
+}
+
+.in, .out {
+ -webkit-animation-timing-function: linear ;
+ -webkit-animation-duration: 300ms;
+}
+
+.slide.in {
+ -webkit-transform: translateX(0);
+ -webkit-animation-name: slideinfromright;
+}
+
+.slide.out {
+ -webkit-transform: translateX(-100%);
+ -webkit-animation-name: slideouttoleft;
+}
+
+.slide.in.reverse {
+ -webkit-transform: translateX(0);
+ -webkit-animation-name: slideinfromleft;
+}
+
+.slide.out.reverse {
+ -webkit-transform: translateX(100%);
+ -webkit-animation-name: slideouttoright;
+}
+
+.slideup.in {
+ -webkit-transform: translateY(0);
+ -webkit-animation-name: slideinfrombottom;
+	z-index: 10;
+}
+
+.slideup.out {
+ -webkit-animation-name: dontmove;
+	z-index: 0;
+}
+
+.slideup.out.reverse {
+ -webkit-transform: translateY(100%);
+	z-index: 10;
+ -webkit-animation-name: slideouttobottom;
+}
+
+.slideup.in.reverse {
+	z-index: 0;
+ -webkit-animation-name: dontmove;
+}
+.slidedown.in {
+ -webkit-transform: translateY(0);
+ -webkit-animation-name: slideinfromtop;
+	z-index: 10;
+}
+
+.slidedown.out {
+ -webkit-animation-name: dontmove;
+	z-index: 0;
+}
+
+.slidedown.out.reverse {
+ -webkit-transform: translateY(-100%);
+	z-index: 10;
+ -webkit-animation-name: slideouttotop;
+}
+
+.slidedown.in.reverse {
+	z-index: 0;
+ -webkit-animation-name: dontmove;
+}
+
+.slide.search.out {
+ -webkit-animation-name: search-slideup;
+}
+
+.slide.search.in {
+ -webkit-animation-name: search-slidedown;
+}
+
+@-webkit-keyframes slideup {
+    from { -webkit-transform: translateY(0); }
+    to { -webkit-transform: translateY(-100%); }
+}
+
+@-webkit-keyframes slidedown {
+    from { -webkit-transform: translateY(-100%); }
+    to { -webkit-transform: translateY(0); }
+}
+
+@-webkit-keyframes search-slideup {
+    from { -webkit-transform: translateY(0); }
+    to { -webkit-transform: translateY(-68px); }
+}
+
+@-webkit-keyframes search-slidedown {
+    from { -webkit-transform: translateY(-680px); }
+    to { -webkit-transform: translateY(0); }
+}
+@-webkit-keyframes slideinfromright {
+    from { -webkit-transform: translateX(100%); }
+    to { -webkit-transform: translateX(0); }
+}
+
+@-webkit-keyframes slideinfromleft {
+    from { -webkit-transform: translateX(-100%); }
+    to { -webkit-transform: translateX(0); }
+}
+
+@-webkit-keyframes slideouttoleft {
+    from { -webkit-transform: translateX(0); }
+    to { -webkit-transform: translateX(-100%); }
+}
+
+@-webkit-keyframes slideouttoright {
+    from { -webkit-transform: translateX(0); }
+    to { -webkit-transform: translateX(100%); }
+}
+
+
+@-webkit-keyframes slideinfromtop {
+    from { -webkit-transform: translateY(-100%); }
+    to { -webkit-transform: translateY(0); }
+}
+
+@-webkit-keyframes slideinfrombottom {
+    from { -webkit-transform: translateY(100%); }
+    to { -webkit-transform: translateY(0); }
+}
+
+@-webkit-keyframes slideouttobottom {
+    from { -webkit-transform: translateY(0); }
+    to { -webkit-transform: translateY(100%); }
+}
+
+@-webkit-keyframes slideouttotop {
+    from { -webkit-transform: translateY(0); }
+    to { -webkit-transform: translateY(-100%); }
+}
+
+.fade.in {
+ -webkit-animation-name: fadein;
+}
+.fade.out {
+ -webkit-animation-name: fadeout;
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1.0; }
+}
+
+@-webkit-keyframes fadeout {
+    from { opacity: 1.0; }
+    to { opacity: 0; }
+}
+/* The properties in this rule are only necessary for the 'flip' transition.
+ * We need specify the perspective to create a projection matrix. This will add
+ * some depth as the element flips. The depth number represents the distance of
+ * the viewer from the z-plane. According to the CSS3 spec, 1000 is a moderate
+ * value.
+ */
+.viewport-flip {
+ -webkit-perspective: 1000;
+	position: absolute;
+}
+
+.ui-mobile-viewport-transitioning,
+.ui-mobile-viewport-transitioning .ui-page {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.flip {
+ -webkit-animation-duration: .65s;
+ -webkit-backface-visibility:hidden;
+ -webkit-transform:translateX(0); /* Needed to work around an iOS 3.1 bug that causes listview thumbs to disappear when -webkit-visibility:hidden is used. */
+}
+
+.flip.in {
+ -webkit-transform: rotateY(0) scale(1);
+ -webkit-animation-name: flipinfromleft;
+}
+
+.flip.out {
+ -webkit-transform: rotateY(-180deg) scale(.8);
+ -webkit-animation-name: flipouttoleft;
+}
+
+/* Shake it all about */
+
+.flip.in.reverse {
+ -webkit-transform: rotateY(0) scale(1);
+ -webkit-animation-name: flipinfromright;
+}
+
+.flip.out.reverse {
+ -webkit-transform: rotateY(180deg) scale(.8);
+ -webkit-animation-name: flipouttoright;
+}
+
+@-webkit-keyframes flipinfromright {
+    from { -webkit-transform: rotateY(-180deg) scale(.8); }
+    to { -webkit-transform: rotateY(0) scale(1); }
+}
+
+@-webkit-keyframes flipinfromleft {
+    from { -webkit-transform: rotateY(180deg) scale(.8); }
+    to { -webkit-transform: rotateY(0) scale(1); }
+}
+
+@-webkit-keyframes flipouttoleft {
+    from { -webkit-transform: rotateY(0) scale(1); }
+    to { -webkit-transform: rotateY(-180deg) scale(.8); }
+}
+
+@-webkit-keyframes flipouttoright {
+    from { -webkit-transform: rotateY(0) scale(1); }
+    to { -webkit-transform: rotateY(180deg) scale(.8); }
+}
+
+
+/* Hackish, but reliable. */
+
+@-webkit-keyframes dontmove {
+    from { opacity: 1; }
+    to { opacity: 1; }
+}
+
+.pop {
+ -webkit-transform-origin: 50% 50%;
+}
+
+.pop.in {
+ -webkit-transform: scale(1);
+    opacity: 1;
+ -webkit-animation-name: popin;
+	z-index: 10;
+}
+
+.pop.out.reverse {
+ -webkit-transform: scale(.2);
+	opacity: 0;
+ -webkit-animation-name: popout;
+	z-index: 10;
+}
+
+.pop.in.reverse {
+	z-index: 0;
+ -webkit-animation-name: dontmove;
+}
+
+@-webkit-keyframes popin {
+    from {
+        -webkit-transform: scale(.2);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes popout {
+    from {
+        -webkit-transform: scale(1);
+        opacity: 1;
+    }
+    to {
+        -webkit-transform: scale(.2);
+        opacity: 0;
+    }
+}
+
+/*
+* jQuery Mobile Framework
+* Copyright (c) jQuery Project
+* Dual licensed under the MIT (MIT-LICENSE.txt) or GPL (GPL-LICENSE.txt) licenses.
+*/
+/* fixed page header & footer configuration */
+.ui-header, .ui-footer, .ui-page-fullscreen .ui-header, .ui-page-fullscreen .ui-footer  { position: absolute;  overflow: hidden; width: 100%; border-left-width: 0; border-right-width: 0; }
+.ui-header-fixed, .ui-footer-fixed {
+	z-index: 1000;
+ -webkit-transform: translateZ(0); /* Force header/footer rendering to go through the same rendering pipeline as native page scrolling. */
+}
+.ui-footer-duplicate, .ui-page-fullscreen .ui-fixed-inline { display: none; }

@@ -1,0 +1,47 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 20px;
+}
+#mainNav {
+/*    overflow: hidden;*/
+}
+#mainNav li {
+    border-left: 1px solid #587b8e;
+    border-right: 1px solid #0e2531;
+}
+#mainNav li a{
+/*    font-size: 0.95em; */
+    display: block;
+    padding: 10px 31px; 
+    font-weight: bold;
+    font-family: 'PT Sans', sans-serif;
+}
+#mainNav li a.menu-father:hover + ul{
+    display: block;
+}
+#feeds-box {
+    background: #336D88;
+}
+#lightBox-wrapper {
+    background: #ffffff;
+    filter: Alpha(Opacity=80);
+    opacity : 0.8;
+}
+#ways-to-connect ul {
+    display: block;
+    width: 148px;
+    margin: 0 auto;
+}
+#ways-to-connect li {
+    display: block;
+    float: left;
+    width: 32px;
+    height: 32px;
+}
+#newsletter-subscription input[type="email"] {
+    display: inline !important;
+}

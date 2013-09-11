@@ -1,0 +1,215 @@
+/*
+Theme Name: Mobimini
+Template: default
+Design Studio: Obox Design http://www.obox-design.com/
+Version: 1.1
+Author: Obox Design
+Author URI: http://www.obox-design.com/
+*/
+
+@import url("../parent-style.min.css");
+@import url("../jquerymobile.css");
+
+/*-------------------------------------------------------------------------------------------*/
+/*- SETUP STD CLASSES -----------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+body{color: #444;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- GLOBAL CLASSES --------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+/*--- Links ---*/
+a{color: #069;}
+	
+/*--- Layouts ---*/
+.no_bg{background-image: none;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- GENERAL LAYOUT --------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+#header-container{background: #111;}
+#footer-container{border-top: 1px solid #999;}
+#footer{background: #fff;}
+	
+	
+/*-------------------------------------------------------------------------------------------*/
+/*- HEADER ----------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+.logo h1{text-shadow: 0px -1px 0px rgba(0, 0, 0, 1);}
+.logo h1, .logo h1 a{color: #fff !important;}
+
+.drop-down{background: url(layers/sprite.png) 0px -130px no-repeat;}
+.drop-down.no-arrow{display: block; color: #fff; width: 40px; padding-top: 10px; font-size: 11px; font-weight: bold; background: none; text-indent: 0px;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- SEARCH LAYOUT ---------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+div.search{background: #444; -webkit-box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 1);}
+div.search input.search-input{background: #fff; border: 1px solid #fff; color: #333;
+								-webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 1);}
+div.search input[type=submit]{background: url(layers/action-bg.png) center repeat-x; border: none;
+								color: #fff; text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
+								-webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.6), 0px 1px 2px rgba(0, 0, 0, 1);}
+									
+									
+/*-------------------------------------------------------------------------------------------*/
+/*- MENU LAYOUT -----------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+
+	/*- NAVIGATION LIST -*/
+	ul.navigation li{background: #cacdd2 url(layers/menu-bg.png) top repeat-x;}
+	ul.navigation li a{border-bottom: 1px solid #9299A3; border-top: 1px solid #DEE0E3; color:#484E57; text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);}
+	ul.navigation li:last-child a{border-bottom: 1px solid #38414B;}
+	
+	ul.navigation li.header{background: #6a737f url(layers/alt-bar-bg.png) center repeat-x;}
+	ul.navigation li.header a{color: #fff; text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.8);}
+	
+	ul.sub-menu li:last-child a{border-bottom: 1px solid #9299A3;}
+
+	/*- SEARCH STYLES -*/
+	li.header .search-button{border: none; background: url(layers/sprite.png) no-repeat; background-position: -226px -5px; -webkit-box-shadow: none; }
+	li.header .search-button.active{background-position: -226px -48px;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- FEATURE AREA ----------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+.slider{background: #444; -webkit-box-shadow: inset 0px 0px 8px rgba(0, 0, 0, 1);}
+.slider ul li h2{background: url(layers/transparent-dark-bg.png) repeat; color: #fff;}
+.slider ul li h2 a{color: #fff;}
+.slider ul li a.thumbnail img{-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);}
+.slider .post-count{background: url(layers/transparent-dark-bg.png) repeat; color: #fff;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- HOME PAGE LAYOUT ------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+	.page-title{background: #fff; color: #444; border-bottom: 1px dotted #ccc;}
+				
+	.post-list li{background: #fff; border-bottom: 1px dotted #ccc;}
+	
+	/*- COMMENT BUBBLE ---*/
+	.comment-count{background: #fff; -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);}
+	.comment-count span{color: #fff; background: #B50407;
+							text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);}
+								
+	/*- POST LIST CONTENT STYLING ---*/							
+	.post-list li a.post-thumbnail{border: none; -webkit-border-radius: none; border-radius: none;}
+	.post-list li a.post-thumbnail img{-webkit-border-radius: 0px;}
+	.post-list li .date{color: #777;}
+	.post-list li .copy{color: #595959;}
+			
+	
+	/*- ARCHIVES ---*/
+	.archive-list li{border-bottom: 1px dotted #ccc;}
+	.archive-list li.month{background: #222; border-bottom: 1px solid #000; border-top: 1px solid #333; color: #fff; text-shadow: 0px -1px 2px rgba(0, 0, 0, 1);}
+	.archive-list li .date{color: #777;}
+	.archive-list li:last-child{border-bottom: 1px solid #fff;}
+	
+	
+	/*- LOAD MORE ---*/
+	li.load-more{background: #181818; border-top: 1px solid #333; border-bottom: 1px solid #000;}
+	li.load-more a{background: #333; border: none; color: #fff;}
+
+	/*- PAGINATION -*/
+	.pagination {background: #222; border-bottom: 1px solid #000; border-top: 1px solid #555; color: #ccc; text-shadow: 0px -1px 0px rgba(0, 0, 0, 1);}
+	.pagination li.page-count{color: #fff;}
+	.pagination .next a, .pagination .previous a{background: #333; border: none; color: #fff; text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
+													-webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.6), 0px 1px 2px rgba(0, 0, 0, 1);}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- POSTS CLASSES ---------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+
+	.post { position: relative; }
+	.post .post-icon a  { position: absolute; top: -11px !important; left: -8px !important; display: block; overflow: hidden; width: 31px !important; height: 0; padding-top: 32px !important; background: url(images/ico-post-icons.png) no-repeat 0 0 !important;}
+	.post .post-icon.link a  { background-position: 0 0 !important; }
+	.post .post-icon.video a  { background-position: 0 -42px !important; }
+	.post .post-icon.article a  { background-position: 0 -84px !important; }
+	.post .post-icon.audio a  { background-position: 0 -126px !important; }
+	.post .post-icon.image a  { background-position: 0 -168px !important; }
+	.post .post-icon.quote a  { background-position: 0 -210px !important; }
+	
+	.video { margin-bottom: 12px !important;}
+	
+
+	/*------------------------------*/
+	/*- POST TITLE META ------------*/
+	h3.post-title{margin: 3px 10px 3px 29px !important;}
+	h3.post-title a{color: #069;}
+	h5.date{color: #777; margin: 10px 0px 4px 29px !important; font-size: 11px; font-weight: normal;}
+
+
+	/*------------------------------*/
+	/*- POST FEATURE IMAGE ---------*/
+	.post-image{padding: 0px; background: #444; -webkit-border-radius: none; border-radius: none;}
+	.post-image img{margin: 0px; -webkit-border-radius: none; border-radius: none;}
+	.post-type-image img{background: #000; -webkit-border-radius: none; border-radius: none;}
+			
+	/*------------------------------*/
+	/*- POST CONTENT ---------------*/
+	.post-content{background: #fff; border-top: 1px solid #fff; border-bottom: 1px solid #ccc;}
+
+		/*------------------------------------------------------------------------------------*/
+		/*- RESET SOME CLASSES FOR THE COPY AFTER CLEARING EVERYTHING AT THE TOP OF THE CSS  -*/
+		.copy blockquote{background: url(layers/quote-bg.png) 0px 3px no-repeat;}
+			
+					
+	/*------------------------------*/
+	/*- POST PAGE META -------------*/
+	.post-meta{padding: 10px 10px;background: #fff; border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; color: #ccc;}
+	.post-meta li a{color: #000;}
+	
+	
+/*-------------------------------------------------------------------------------------------*/
+/*- COMMENTS --------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+.comments{border-top: 2px solid #ccc; border-bottom: 2px solid #ccc;}
+h3.section-title{background: #fff; color: #000; padding: 15px 10px; margin: 0px;}
+
+.comment-container{background: #fff;}
+.comment{ padding: 15px 10px; background: #fff; border-top: 1px dotted #ccc;}
+.comment-avatar{border: 1px solid #fff;}
+.comment:last-child{border-bottom: none;}
+.comment h5.date{margin-top: 0px !important;}
+
+/*Small Hack for the author bio '.comment' class*/
+.author .comment{border: none;}
+
+	/*--------------------------------------------------------*/
+	/*- THREADED COMMENTS - ITS TIME TO THREAD THIS BEAST ----*/
+	.threaded-comments{background: #fff; border: 1px solid #ccc;}
+	.threaded-comments li.comment{background: #fff; border-bottom: 1px solid #ccc; border-top: none;}
+	.threaded-comments li.comment:last-child{border-bottom: none;}
+	
+
+/*-------------------------------------------------------------------------------------------*/
+/*- POST A COMMENT --------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+.comment_form{padding-top: 0px; background: #fff; border-top: none;}
+.comment_form label{color: #888;}
+.comment_form input[type=text]{background: #fff; border: 1px solid #B1BECB;}
+.comment_form textarea{background: #fff; border: 1px solid #B1BECB;}
+
+input.submit_button{background: #069; border: none; color: #fff;}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*- FOOTER ----------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------*/
+#footer{color: #4C566C; background-color: #fff;}
+#footer a{color: #333;}
+
+/*-------------------------*/
+/*- AUDIO -----------------*/
+.audio h3.title {background-position: 0px -128px;}
+
+.audio-player {width: 102px; height: 102px; margin: auto; padding-bottom: 20px; position: relative;}
+.audio-player .jp-play {background: url(images/layout/play.png); width: 102px; height: 102px; position: absolute; z-index: 2; text-indent: -9999px; }
+.audio-player .jp-pause {background: url(images/layout/pause.png); width: 102px; height: 102px; position: absolute; z-index: 1; text-indent: -9999px;}
+.audio-player .stop {display: none;}
+.audio-player a:hover {opacity: .7;}
