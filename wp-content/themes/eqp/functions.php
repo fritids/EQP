@@ -4043,9 +4043,10 @@ function thankyou_message( $postData, $checking ){
     else { return false; }
 }
 
-function get_destacados_newsletter( $itemsArray, $newsType, $echo = false ){
+function get_destacados_newsletter( $itemsArray, $newsType, $echo = false, $utms=false ){
     $out = '';
     $counter = 0;
+    $posDestacada=1;
     $arrayCounter = 1;
     if( $newsType == 'boletin_semanal' ){ $destKey = 'id_segundo_destacado_boletin_semanal'; }
     else { $destKey = 'id_destacado_secundario_especial_newsletter'; }
@@ -4062,19 +4063,19 @@ function get_destacados_newsletter( $itemsArray, $newsType, $echo = false ){
         
         $out .= '<td style=" padding-left: 20px; padding-right: 10px; padding-bottom: 30px; padding-top: 0px; vertical-align: top; width: 50%;">';
         
-        $out .= '<a style=" font-size: 16px; text-decoration: none; color: #336D88; font-weight: bold; display: block; margin-bottom: 10px; "  href="'. get_permalink( $thePost->ID ) .'" title="Ver '. $thePost->post_title .'">';
+        $out .= '<a style=" font-size: 16px; text-decoration: none; color: #336D88; font-weight: bold; display: block; margin-bottom: 10px; "  href="'. get_permalink( $thePost->ID ) .$utms.'destacado_secundario_'.$posDestacada.'" title="Ver '. $thePost->post_title .'">';
         $out .= $thePost->post_title;
         $out .= '</a>';
         $out .= '<table style="border-collapse: collapse;" >';
         $out .= '<tr>';
         $out .= '<td style=" width: 60px; " >';
-        $out .= '<a style="border-radius: 5px; padding-top: 5px; padding-left: 5px; outline: none; border: 0px; display: block; width: 50px; height: 50px; background: url(http://mailings.ida.cl/eqp/fondo-perfil.png) 50% 50% no-repeat; " href="'. home_url() .'/perfil-de-usuario/?user='. $thePost->post_author .'" title="Ver perfil de '. nombre_y_apellido( $thePost->post_author ) .'">';
+        $out .= '<a style="border-radius: 5px; padding-top: 5px; padding-left: 5px; outline: none; border: 0px; display: block; width: 50px; height: 50px; background: url(http://mailings.ida.cl/eqp/fondo-perfil.png) 50% 50% no-repeat; " href="'. home_url() .'/perfil-de-usuario/'.$utms.'destacado_secundario_autor_foto_'.$posDestacada.'&amp;user='. $thePost->post_author .'" title="Ver perfil de '. nombre_y_apellido( $thePost->post_author ) .'">';
         $out .= get_simple_local_avatar($thePost->post_author, 40);
         $out .= '</a>';
         $out .= '</td>';
         $out .= '<td style="padding-left: 10px; font-size: 11px;" >';
-        $out .= '<p style="color: #666666; margin: 0px; padding: 0px;" >Por: <a style="color: #CA4141; text-decoration: none;" href="'. home_url() .'/perfil-de-usuario/?user='. $thePost->post_author .'" title="Ver Perfil de '. nombre_y_apellido( $thePost->post_author ) .'" >'. nombre_y_apellido( $thePost->post_author ) .'</a></p>';
-        $out .= '<p style="color: #666666; margin: 0px; padding: 0px;" >En: <a style="color: #CA4141; text-decoration: none;" href="'. get_category_link($catList[1]) .'" title="Ver ' . $catList[0] . '" >' . $catList[0] . '</a></p>';
+        $out .= '<p style="color: #666666; margin: 0px; padding: 0px;" >Por: <a style="color: #CA4141; text-decoration: none;" href="'. home_url() .'/perfil-de-usuario/'.$utms.'destacado_secundario_autor_nombre_'.$posDestacada.'&amp;user='. $thePost->post_author .'" title="Ver Perfil de '. nombre_y_apellido( $thePost->post_author ) .'" >'. nombre_y_apellido( $thePost->post_author ) .'</a></p>';
+        $out .= '<p style="color: #666666; margin: 0px; padding: 0px;" >En: <a style="color: #CA4141; text-decoration: none;" href="'. get_category_link($catList[1]) .$utms.'destacado_secundario_tema_'.$posDestacada.'" title="Ver ' . $catList[0] . '" >' . $catList[0] . '</a></p>';
         $out .= '<p style="color: #666666; margin: 0px; padding: 0px;" >' . mysql2date(get_option('date_format'), $thePost->post_date) . '</p>';
         $out .= '</td>';
         $out .= '</tr>';
@@ -4085,6 +4086,7 @@ function get_destacados_newsletter( $itemsArray, $newsType, $echo = false ){
         
         $out .= '</td>';
         
+        $posDestacada++;
         if( $counter === 1 ){
             $out .= '</tr>';
             $counter = 0;
@@ -4097,9 +4099,10 @@ function get_destacados_newsletter( $itemsArray, $newsType, $echo = false ){
     if( $echo ){ echo $out; }
     else { return $out; }
 }
-function get_dest_tercer_nivel( $itemsArray, $echo = false ){
+function get_dest_tercer_nivel( $itemsArray, $echo = false, $utms=false ){
     $out = '';
     $counter = 0;
+    $posDestacada=1;
 //    $arrayCounter = 1;
 //    $destKey = 'id_tercer_destacado_boletin_semanal';
     
@@ -4109,9 +4112,11 @@ function get_dest_tercer_nivel( $itemsArray, $echo = false ){
         $out .= '<td style=" padding-left: 20px; padding-right: 10px; padding-bottom: 30px; padding-top: 0px; vertical-align: top; width: 50%;">';
         
         regenerate_image_data( $item['imagen_tercer_cont'] , 'news_destacado' );
+        $out .= '<a style="display: block;"  href="'. $item['link_tercer_cont'] . $utms .'destacado_terciario_img_'.$posDestacada.'" title="Ver '. $item['titulo_tercer_cont'] .'">';        
         $out .= wp_get_attachment_image( $item['imagen_tercer_cont'] , false, 'news_destacado', array('style' => 'width: 320px; height: 200px;'));
+        $out .= '</a>';
         
-        $out .= '<a style=" font-size: 16px; text-decoration: none; color: #336D88; font-weight: bold; display: block; margin-bottom: 10px; margin-top: 10px;"  href="'. $item['link_tercer_cont'] .'" title="Ver '. $item['titulo_tercer_cont'] .'">';
+        $out .= '<a style=" font-size: 16px; text-decoration: none; color: #336D88; font-weight: bold; display: block; margin-bottom: 10px; margin-top: 10px;"  href="'. $item['link_tercer_cont'] . $utms .'destacado_terciario_'.$posDestacada.'" title="Ver '. $item['titulo_tercer_cont'] .'">';
         $out .= $item['titulo_tercer_cont'];
         $out .= '</a>';
         
@@ -4143,7 +4148,7 @@ function get_dest_tercer_nivel( $itemsArray, $echo = false ){
             $counter = 0;
             continue;
         }
-        
+        $posDestacada++;
         $counter++;
     }
     

@@ -1,3 +1,6 @@
+<?php 
+$utms = '?utm_source='.$theLayout['acf_fc_layout'].'&amp;utm_medium=Email&amp;utm_campaign='.$post->post_name.'_'.  get_the_date("Ymd").'&amp;utm_content=';
+?>
 <table  align="center"  cellpadding="0" cellpadding="0"  style="
              width: 700px;
              margin: 0 auto;
@@ -54,7 +57,7 @@
 
             <?php if( !empty($theLayout['destacados_secundarios_especial_newsletter']) ) : ?>
             <table style=" border-collapse: collapse; margin-bottom: 20px; font-family: sans-serif;" >
-                <?php get_destacados_newsletter( $theLayout['destacados_secundarios_especial_newsletter'], 'especial_newsletter', true ); ?>
+                <?php get_destacados_newsletter( $theLayout['destacados_secundarios_especial_newsletter'], 'especial_newsletter', true, $utms ); ?>
             </table>
             <?php endif; ?>
         </td>

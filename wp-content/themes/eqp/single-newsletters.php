@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>El Quinto Poder - <?php the_title(); ?></title>
     </head>
     <body style="margin: 0px; padding: 0px; font-family: sans-serif; color: #333333; font-size: 12px;" >
         <table style="
@@ -19,14 +20,16 @@
                 color: #7f7f7f;
                 border-bottom: 5px solid #183248;
                 ">
-                    <span style="display: block; margin-bottom: 10px; font-family: sans-serif;" >Si no puedes ver este mensaje correctamente <a style="color: #005183;" href="<?php the_permalink(); ?>" title="er la versi&oacute;n web">Prueba la versi&oacute;n web</a></span>
+                <?php 
+                    $theMetaInfo = get_field('newsletter_type_info', $post->ID);
+                    $theLayout = $theMetaInfo[0];
+                ?>
+                    <span style="display: block; margin-bottom: 10px; font-family: sans-serif;" >Si no puedes ver este mensaje correctamente <a style="color: #005183;" href="<?php the_permalink(); echo '?utm_source='.$theLayout['acf_fc_layout'].'&amp;utm_medium=Email&amp;utm_campaign='.$post->post_name.'_'.  get_the_date("Ymd").'&amp;utm_content=version_web'; ?>" title="ir la versi&oacute;n web">Prueba la versi&oacute;n web</a></span>
                 </td>
             </tr>
         </table>
         <!-- End PRE HEADER -->
         <?php 
-            $theMetaInfo = get_field('newsletter_type_info', $post->ID);
-            $theLayout = $theMetaInfo[0];
             require('newsletter-'. $theLayout['acf_fc_layout'] .'.php');
         ?>
         <!-- End CONTENT -->
@@ -41,7 +44,7 @@
                     <table style=" border-collapse: collapse; width: 700px; margin: 0 auto;" >
                         <tr>
                             <td>
-                                <a href="http://elquintopoder.cl" title="El Quinto Poder" style="
+                                <a href="http://elquintopoder.cl/<?php echo $utms; ?>linkLogoFooter" title="El Quinto Poder" style="
                                    text-decoration: none;
                                    border: 0px;
                                " >

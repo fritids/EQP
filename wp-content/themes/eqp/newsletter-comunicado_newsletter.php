@@ -1,3 +1,6 @@
+<?php 
+$utms = '?utm_source='.$theLayout['acf_fc_layout'].'&amp;utm_medium=Email&amp;utm_campaign='.$post->post_name.'_'.  get_the_date("Ymd").'&amp;utm_content=';
+?>
 <table align="center"  cellpadding="0" cellpadding="0"  style="
              width: 700px;
              margin: 0 auto;
