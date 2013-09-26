@@ -287,7 +287,7 @@ function statWidgetInit() {
 } 
 
 function exportmonthcsv(){
-    // Display whatever it is you want to show
+    // pasandole fechas  con get
     global $wpdb;
     
     $lastday = cal_days_in_month(CAL_GREGORIAN, $_GET["mes"], date('Y'));
