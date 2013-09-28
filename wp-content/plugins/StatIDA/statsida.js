@@ -14,6 +14,7 @@ jQuery(function() {
             categories = new Array();
             datos = new Array();
             jQuery.each(item, function(ii, itemes) {
+            	ii = ii.replace(/_/g," ")
                 categories.push(ii);
                 datos.push(itemes);
             });
@@ -22,19 +23,35 @@ jQuery(function() {
 
         jQuery('.graph').highcharts({
             chart: {
-                type: 'line'
+                type: 'column'
             },
             title: {
-                text: 'Datos 4 últimos meses'
+                text: 'Comentarios 12 últimos meses'
             },
             xAxis: {
-                categories: categories
+                categories: categories,
+                labels: {
+                    rotation: -45,
+                    align: 'right',
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif',
+                        marginTop: '20px'
+                    }
+                }                 
             },
             yAxis: {
                 title: {
-                    text: 'esta'
+                    text: 'Miles'
                 }
             },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.5,
+                    borderWidth: 0,
+					pointWidth:10
+                }
+            },           
             series: meses
         });
 

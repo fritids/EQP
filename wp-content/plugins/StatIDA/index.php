@@ -41,43 +41,50 @@ class statIDA {
     global $wpdb;
     
         
-        for ($hh=4; $hh >0; $hh-- ):
-        $_GET["mes"] = date("m") - $hh; 
+        for ($hh=11; $hh >=0; $hh-- ):
         
-        $mes =  date("M", mktime(0, 0, 0,  $_GET["mes"], 1, date("Y")) ); 
-        
-        $lastday = cal_days_in_month(CAL_GREGORIAN, $_GET["mes"], date('Y'));
-        $mes_ini =  date("Y-m-d H:i:s", mktime(0, 0, 0,  $_GET["mes"], 1, date("Y")) );
-        $mes_fin =  date("Y-m-d H:i:s", mktime(0, 0, 0,  $_GET["mes"], $lastday, date("Y")) );
-        $menosmes =  gmmktime(0, 0, 0,  $_GET["mes"], 1, date("Y"));
-        $masmes =   gmmktime(0, 0, 0,  $_GET["mes"], $lastday, date("Y"));
+        $mesnum = date("m", mktime(0, 0, 0,  date("m") - $hh, 1, date("Y")) ); 
+		$mesnum = (int) $mesnum;
 
-        $numberPosts = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish' AND $wpdb->posts.post_type = 'post' AND $wpdb->posts.post_date >= '$mes_ini' AND $wpdb->posts.post_date <= '$mes_fin'");
-        $tojson["entradas"] = (int) $numberPosts; 
+        $year =  date("Y", mktime(0, 0, 0,  date("m") - $hh, 1, date("Y")) );         
+        $year = (int)$year;
+
+		
+        $mes =  date("M", mktime(0, 0, 0,  $mesnum, 1, $year) ); 
+
         
-        $numberAcciones = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish' AND $wpdb->posts.post_type = 'post_acciones' AND $wpdb->posts.post_date >= '$mes_ini' AND $wpdb->posts.post_date <= '$mes_fin'");
-        $tojson["acciones"] = (int) $numberAcciones; 
+        $lastday = cal_days_in_month(CAL_GREGORIAN, $mesnum, $year);
+        $mes_ini =  date("Y-m-d H:i:s", mktime(0, 0, 0,  $mesnum, 1, $year) );
+        $mes_fin =  date("Y-m-d H:i:s", mktime(0, 0, 0,  $mesnum, $lastday, $year) );
+        $menosmes =  gmmktime(0, 0, 0,  $mesnum, 1, $year);
+        $masmes =   gmmktime(0, 0, 0,  $mesnum, $lastday, $year);
+
+//        $numberPosts = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish' AND $wpdb->posts.post_type = 'post' AND $wpdb->posts.post_date >= '$mes_ini' AND $wpdb->posts.post_date <= '$mes_fin'");
+//        $tojson["entradas"] = (int) $numberPosts; 
         
-        $numberFotos = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish' AND $wpdb->posts.post_type = 'post_fotos' AND $wpdb->posts.post_date >= '$mes_ini' AND $wpdb->posts.post_date <= '$mes_fin'");
-        $tojson["fotos"] = (int) $numberFotos; 
+//        $numberAcciones = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish' AND $wpdb->posts.post_type = 'post_acciones' AND $wpdb->posts.post_date >= '$mes_ini' AND $wpdb->posts.post_date <= '$mes_fin'");
+//        $tojson["acciones"] = (int) $numberAcciones; 
         
-        $numberVideos = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish' AND $wpdb->posts.post_type = 'post_videos' AND $wpdb->posts.post_date >= '$mes_ini' AND $wpdb->posts.post_date <= '$mes_fin'");
-        $tojson["videos"] = (int) $numberVideos;         
+//        $numberFotos = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish' AND $wpdb->posts.post_type = 'post_fotos' AND $wpdb->posts.post_date >= '$mes_ini' AND $wpdb->posts.post_date <= '$mes_fin'");
+//        $tojson["fotos"] = (int) $numberFotos; 
+        
+//        $numberVideos = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->posts WHERE $wpdb->posts.post_status = 'publish' AND $wpdb->posts.post_type = 'post_videos' AND $wpdb->posts.post_date >= '$mes_ini' AND $wpdb->posts.post_date <= '$mes_fin'");
+//        $tojson["videos"] = (int) $numberVideos;         
         
         $R_ActiveUsers = $wpdb->get_results("SELECT COUNT(post_author) AS cu FROM $wpdb->posts WHERE post_status = 'publish' AND post_date >= '$mes_ini' AND $wpdb->posts.post_date <= '$mes_fin'  GROUP BY post_author");
         foreach ($R_ActiveUsers as $R_ActiveUser) {
             $ActiveUsersAry[]=$R_ActiveUser->cu;
         }
-        $tojson["usuarios_activos"] = count($ActiveUsersAry);   
+//        $tojson["usuarios_activos"] = count($ActiveUsersAry);   
         
         $R_ActiveUsersComments = $wpdb->get_results("SELECT COUNT(user_id) AS cu FROM $wpdb->comments WHERE $wpdb->comments.comment_approved = '1' AND user_id != 0 AND comment_date >= '$mes_ini'  AND comment_date <= '$mes_fin' GROUP BY user_id");
         foreach ($R_ActiveUsersComments as $R_ActiveUsersComment) {
             $ActiveUsersAryComm[]=$R_ActiveUser->cu;
         }
-        $tojson["usuarios_comentado"] = count($ActiveUsersAryComm);          
+//        $tojson["usuarios_comentado"] = count($ActiveUsersAryComm);          
         
         $numberUsers = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->users WHERE  $wpdb->users.user_registered >= '$mes_ini'  AND $wpdb->users.user_registered <= '$mes_fin'");
-        $tojson["usuarios_registrados"] = (int) $numberUsers;
+//        $tojson["usuarios_registrados"] = (int) $numberUsers;
         
 //        $numberUsersTotal = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->users WHERE 1         ");
 //        $tojson["usuarios_total"] = (int) $numberUsersTotal;
@@ -93,13 +100,13 @@ class statIDA {
         $tojson["comentarios_negativos"] = (int) $numberCommentsVote;
         
         $numberAccionesVotosLogin = $wpdb->get_var("SELECT COUNT(id) FROM $wpdb->acciones WHERE user_id != '0' AND $wpdb->acciones.fecha >= '$mes_ini'   AND $wpdb->acciones.fecha <= '$mes_fin'          ");
-        $tojson["votos_acciones_login"] = (int) $numberAccionesVotosLogin;
+//        $tojson["votos_acciones_login"] = (int) $numberAccionesVotosLogin;
         
         $numberAccionesVotosNoLogin = $wpdb->get_var("SELECT COUNT(id) FROM $wpdb->acciones WHERE user_id = '0' AND $wpdb->acciones.fecha >= '$mes_ini'  AND $wpdb->acciones.fecha <= '$mes_fin'            ");
-        $tojson["votos_acciones_sin_login"] = (int) $numberAccionesVotosNoLogin;        
+//        $tojson["votos_acciones_sin_login"] = (int) $numberAccionesVotosNoLogin;        
         
         $numberAccionesVotosTotal = $wpdb->get_var("SELECT COUNT(id) FROM $wpdb->acciones WHERE $wpdb->acciones.fecha >= '$mes_ini' AND $wpdb->acciones.fecha <= '$mes_fin'         ");
-        $tojson["total_votos_acciones"] = (int) $numberAccionesVotosTotal; 
+//        $tojson["total_votos_acciones"] = (int) $numberAccionesVotosTotal; 
         
         $tojson_tres_meses[$mes] = $tojson;
         endfor;
