@@ -28,6 +28,7 @@ class statIDA {
             <section class="graph_comentarios" style="width:47%; float:left; margin: 30px 1%;"></section>
             <section class="graph_votos" style="width:47%; float:left; margin: 30px 1%;"></section>
             <section class="graph_redes" style="width:47%; float:left; margin: 30px 1%;"></section>
+            <section class="graph_shares" style="width:47%; float:left; margin: 30px 1%;"></section>
             <section class="graph_visitas" style="width:47%; float:left; margin: 30px 1%;"></section>                        
             </div>';
     }
@@ -76,12 +77,12 @@ class statIDA {
                 $tojson["videos"] = (int) $numberVideos;
             } elseif ($_GET["obt"] == "usuarios") {
                 $R_ActiveUsers = $wpdb->get_results("SELECT COUNT(ID) as cu, post_author FROM $wpdb->posts WHERE post_status = 'publish' AND post_type IN ('post_acciones','post_fotos','post_videos','post') AND post_date >= '$mes_ini' AND $wpdb->posts.post_date <= '$mes_fin' GROUP BY post_author");
-                $cusers=1;
-                foreach ($R_ActiveUsers as $cu){
+                $cusers = 1;
+                foreach ($R_ActiveUsers as $cu) {
                     $cusers++;
                 }
                 $tojson["usuarios_activos"] = (int) $cusers;
-                
+
                 $R_ActiveUsersComments = $wpdb->get_var("SELECT COUNT(comment_author) FROM $wpdb->comments WHERE comment_approved = '1' AND user_id != 0 AND comment_date >= '$mes_ini'  AND comment_date <= '$mes_fin'");
                 $tojson["usuarios_comentado"] = (int) $R_ActiveUsersComments;
 
@@ -90,8 +91,7 @@ class statIDA {
 
 //                $numberUsersTotal = $wpdb->get_var("SELECT COUNT(ID) FROM $wpdb->users WHERE 1         ");
 //                $tojson["usuarios_total"] = (int) $numberUsersTotal;
-
-                } elseif ($_GET["obt"] == "comentarios") {
+            } elseif ($_GET["obt"] == "comentarios") {
                 $numberComments = $wpdb->get_var("SELECT COUNT(comment_ID) FROM $wpdb->comments WHERE $wpdb->comments.comment_approved = '1' AND $wpdb->comments.comment_date >= '$mes_ini' AND $wpdb->comments.comment_date <= '$mes_fin'");
                 $tojson["comentarios"] = (int) $numberComments;
 
@@ -120,60 +120,108 @@ class statIDA {
     }
 
     function gastatida() {
-        if ( false === ( $gaStatIDASocialData = get_transient( 'gaStatIDA' ) ) ) {    
-	        require_once(WP_PLUGIN_DIR . '/google-analyticator/class.analytics.stats.php');
-	        # Create a new API object
-	        $api = new GoogleAnalyticsStats();
-	        # Get the current accounts accounts
-	        $login = $api->checkLogin();
-	        $accounts = $api->getSingleProfile();
-	        # Verify accounts exist
-	        if (count($accounts) <= 0)
-	            return 0;
-	        # Loop throught the account and return the current account
-	        foreach ($accounts AS $account) {
-	            # Check if the UID matches the selected UID
-	            if ($account['ga:webPropertyId'] == get_option('ga_uid')) {
-	                $api->setAccount($account['id']);
-	                break;
-	            }
-	        }
-	        
-	        for ($hh = 11; $hh >= 0; $hh--):
-	            //MES PARA EL CALCULO   
-	            $mesnum = date("m", mktime(0, 0, 0, date("m") - $hh, 1, date("Y")));
-	            $mesnum = (int) $mesnum;
-	            //AÑO PARA EL CALCULO   
-	            $year = date("Y", mktime(0, 0, 0, date("m") - $hh, 1, date("Y")));
-	            $year = (int) $year;
-	            //MES PARA JSON   
-	            $mes = date("M", mktime(0, 0, 0, $mesnum, 1, $year));
-	            //PARA QUERY           
-	            $lastday = cal_days_in_month(CAL_GREGORIAN, $mesnum, $year);            
-	            $desde = date("Y-m-d", mktime(0, 0, 0, $mesnum, 1, $year));
-	            $hasta = date("Y-m-d", mktime(0, 0, 0, $mesnum, $lastday, $year));	            
-	           
-		            $socialInteractions = $api->getMetrics('ga:socialInteractions', $desde, $hasta, 'ga:socialInteractionNetwork');    
-					foreach ($socialInteractions->rows as $redes){
-						$gaStatIDASocialData[$mes][$redes[0]]=(int) $redes[1]; 					
-					}
-					if(!$gaStatIDASocialData[$mes]["Facebook"])$gaStatIDASocialData[$mes]["Facebook"]=0;
-					if(!$gaStatIDASocialData[$mes]["Twitter"])$gaStatIDASocialData[$mes]["Twitter"]=0;
-					
-					
-					$gaStatIDASocialData[$mes]["total_social"]= (int)$socialInteractions->totalsForAllResults['ga:socialInteractions'];
-	
-		            $visitors = $api->getMetrics('ga:visitors', $desde, $hasta, 'ga:deviceCategory');    
-					foreach ($visitors->rows as $devices){
-						$gaStatIDASocialData[$mes][$devices[0]]= (int) $devices[1]; 					
-					}
-					$gaStatIDASocialData[$mes]["total_visitor"]= (int) $visitors->totalsForAllResults['ga:visitors'];		 		
-	        endfor;
-			set_transient('gaStatIDA', $gaStatIDASocialData, 60*60*12 );    
-        }   
+        if (false === ( $gaStatIDASocialData = get_transient('gaStatIDA') )) {
+            require_once(WP_PLUGIN_DIR . '/google-analyticator/class.analytics.stats.php');
+            # Create a new API object
+            $api = new GoogleAnalyticsStats();
+            # Get the current accounts accounts
+            $login = $api->checkLogin();
+            $accounts = $api->getSingleProfile();
+            # Verify accounts exist
+            if (count($accounts) <= 0)
+                return 0;
+            # Loop throught the account and return the current account
+            foreach ($accounts AS $account) {
+                # Check if the UID matches the selected UID
+                if ($account['ga:webPropertyId'] == get_option('ga_uid')) {
+                    $api->setAccount($account['id']);
+                    break;
+                }
+            }
+
+            for ($hh = 11; $hh >= 0; $hh--):
+                //MES PARA EL CALCULO   
+                $mesnum = date("m", mktime(0, 0, 0, date("m") - $hh, 1, date("Y")));
+                $mesnum = (int) $mesnum;
+                //AÑO PARA EL CALCULO   
+                $year = date("Y", mktime(0, 0, 0, date("m") - $hh, 1, date("Y")));
+                $year = (int) $year;
+                //MES PARA JSON   
+                $mes = date("M", mktime(0, 0, 0, $mesnum, 1, $year));
+                //PARA QUERY           
+                $lastday = cal_days_in_month(CAL_GREGORIAN, $mesnum, $year);
+                $desde = date("Y-m-d", mktime(0, 0, 0, $mesnum, 1, $year));
+                $hasta = date("Y-m-d", mktime(0, 0, 0, $mesnum, $lastday, $year));
+
+                //nueva metrica
+                
+                $socialInteractions = $api->getMetrics('ga:visits', $desde, $hasta, 'ga:socialNetwork');
+                $suma = 0;
+                if (!empty($socialInteractions->rows)) {
+                    foreach ($socialInteractions->rows as $redes) {
+                        if ($redes[0] == "(not set)") {
+                            $redes[0] = "unknow";
+                        }
+                        if ($redes[0] == "Google+") {
+                            $redes[0] = "Google";
+                        }
+                        $gaStatIDASocialData[$mes][$redes[0]] = (int) $redes[1];
+                        if ($redes[0] != "unknow") {
+                            $suma += (int) $redes[1];
+                        }
+                    }
+                }
+                if (!$gaStatIDASocialData[$mes]["Google"])
+                    $gaStatIDASocialData[$mes]["Google"] = 0;
+                if (!$gaStatIDASocialData[$mes]["Facebook"])
+                    $gaStatIDASocialData[$mes]["Facebook"] = 0;
+                if (!$gaStatIDASocialData[$mes]["Twitter"])
+                    $gaStatIDASocialData[$mes]["Twitter"] = 0;
+                if (!$gaStatIDASocialData[$mes]["LinkedIn"])
+                    $gaStatIDASocialData[$mes]["LinkedIn"] = 0;
+                if (!$gaStatIDASocialData[$mes]["Disqus"])
+                    $gaStatIDASocialData[$mes]["Disqus"] = 0;
+                if (!$gaStatIDASocialData[$mes]["Pocket"])
+                    $gaStatIDASocialData[$mes]["Pocket"] = 0;
+                $gaStatIDASocialData[$mes]["total_social"] = $suma;
+
+                //nueva metrica
+
+                $socialInteractions = $api->getMetrics('ga:socialInteractions', $desde, $hasta, 'ga:socialInteractionNetwork');
+                foreach ((array)$socialInteractions->rows as $redes) {
+                    if ($redes[0] == "Facebook") {
+                        $redes[0] = "Facebook_share";
+                    }
+                    if ($redes[0] == "Twitter") {
+                        $redes[0] = "Twitter_share";
+                    }
+                    if ($redes[0] == "Google") {
+                        $redes[0] = "Google_share";
+                    }
+
+                    $gaStatIDASocialData[$mes][$redes[0]] = (int) $redes[1];
+                }
+                if (!$gaStatIDASocialData[$mes]["Facebook_share"])
+                    $gaStatIDASocialData[$mes]["Facebook_share"] = 0;
+                if (!$gaStatIDASocialData[$mes]["Twitter_share"])
+                    $gaStatIDASocialData[$mes]["Twitter_share"] = 0;
+                if (!$gaStatIDASocialData[$mes]["Google_share"])
+                    $gaStatIDASocialData[$mes]["Google_share"] = 0;
+
+                $gaStatIDASocialData[$mes]["total_share"] = (int) $socialInteractions->totalsForAllResults['ga:socialInteractions'];
+                
+                //nueva metrica
+                $visitors = $api->getMetrics('ga:visitors', $desde, $hasta, 'ga:deviceCategory');
+                foreach ($visitors->rows as $devices) {
+                    $gaStatIDASocialData[$mes][$devices[0]] = (int) $devices[1];
+                }
+                $gaStatIDASocialData[$mes]["total_visitor"] = (int) $visitors->totalsForAllResults['ga:visitors'];
+            endfor;
+            set_transient('gaStatIDA', $gaStatIDASocialData, 60 * 60 * 12);
+        }
 //        delete_transient('gaStatIDA');
-		die(json_encode($gaStatIDASocialData));  
-     }
+        die(json_encode($gaStatIDASocialData));
+    }
 
 }
 

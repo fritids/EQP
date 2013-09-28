@@ -338,17 +338,25 @@ jQuery(function() {
         cache: false,
         dataType: "json"
     }).done(function(msg) {
-        redes= new Array();
-        devices= new Array();
-        total_social= new Array();
-        facebook= new Array();
-        google= new Array();
-        twitter= new Array();
-        total_visitor= new Array();
-        desktop= new Array();
-        mobile= new Array();
-        tablet= new Array();
+        redes = new Array();
+        devices = new Array();
+        share = new Array();
+        total_social = new Array();
+        facebook = new Array();
+        google = new Array();
+        twitter = new Array();
+        linkedin = new Array();
+        pocket = new Array();
+        disqus = new Array();
+        total_visitor = new Array();
+        desktop = new Array();
+        mobile = new Array();
+        tablet = new Array();
         categories = new Array();
+        total_share= new Array();
+        facebook_share = new Array();
+        google_share = new Array();
+        twitter_share = new Array();
         jQuery.each(msg, function(i, item) {
 
             jQuery.each(item, function(ii, itemes) {
@@ -364,6 +372,27 @@ jQuery(function() {
                 else if (ii == "Twitter") {
                     twitter.push(itemes);
                 }
+                if (ii == "total_share") {
+                    total_share.push(itemes);
+                }
+                else if (ii == "Google_share") {
+                    google_share.push(itemes);
+                }
+                else if (ii == "Facebook_share") {
+                    facebook_share.push(itemes);
+                }
+                else if (ii == "Twitter_share") {
+                    twitter_share.push(itemes);
+                }
+                else if (ii == "LinkedIn") {
+                    linkedin.push(itemes);
+                }
+                else if (ii == "Pocket") {
+                    pocket.push(itemes);
+                }
+                else if (ii == "Disqus") {
+                    disqus.push(itemes);
+                }
                 if (ii == "total_visitor") {
                     total_visitor.push(itemes);
                 }
@@ -375,16 +404,22 @@ jQuery(function() {
                 }
                 else if (ii == "tablet") {
                     tablet.push(itemes);
-                }                
-                
-                
+                }
             });
             categories.push(i);
         });
         redes.push({name: 'Redes Sociales', data: total_social, type: "column"});
-        redes.push({name: 'Google', data: google, type: "spline"});
         redes.push({name: 'Twitter', data: twitter, type: "spline"});
-        redes.push({name: 'Facebook', data: facebook, type: "spline"});        
+        redes.push({name: 'Facebook', data: facebook, type: "spline"});
+        redes.push({name: 'LinkedIn', data: linkedin, type: "spline"});
+        redes.push({name: 'Google', data: google, type: "spline"});        
+        redes.push({name: 'Pocket', data: pocket, type: "spline"});
+        redes.push({name: 'Disqus', data: disqus, type: "spline"});
+
+        share.push({name: 'Redes Sociales', data: total_share, type: "column"});
+        share.push({name: 'Google', data: google_share, type: "spline"});
+        share.push({name: 'Twitter', data: twitter_share, type: "spline"});
+        share.push({name: 'Facebook', data: facebook_share, type: "spline"});
 
         devices.push({name: 'Visitas', data: total_visitor, type: "column"});
         devices.push({name: 'Desktop', data: desktop, type: "spline"});
@@ -437,6 +472,54 @@ jQuery(function() {
             },
             series: redes
         });
+        
+        jQuery('.graph_shares').highcharts({
+            chart: {
+                //s
+            },
+            title: {
+                text: 'Comparido a Redes Sociales'
+            },
+            xAxis: {
+                categories: categories,
+                labels: {
+                    rotation: -45,
+                    align: 'right',
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif',
+                        marginTop: '20px'
+                    }
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'Cifras totales por mes'
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.5,
+                    borderWidth: 0,
+                    pointWidth: 30,
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        x: 4,
+                        y: 10,
+                        style: {
+                            fontSize: '11px',
+                            fontFamily: 'Verdana, sans-serif',
+                            textShadow: '0 0 3px black'
+                        }
+                    }
+                }
+            },
+            series: share
+        });        
+        
         jQuery('.graph_visitas').highcharts({
             chart: {
 	            //s
