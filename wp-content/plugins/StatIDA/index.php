@@ -27,6 +27,8 @@ class statIDA {
             <section class="graph_usuarios" style="width:47%; float:left; margin: 30px 1%;"></section>
             <section class="graph_comentarios" style="width:47%; float:left; margin: 30px 1%;"></section>
             <section class="graph_votos" style="width:47%; float:left; margin: 30px 1%;"></section>
+            <section class="graph_redes" style="width:47%; float:left; margin: 30px 1%;"></section>
+            <section class="graph_visitas" style="width:47%; float:left; margin: 30px 1%;"></section>                        
             </div>';
     }
 
@@ -118,45 +120,60 @@ class statIDA {
     }
 
     function gastatida() {
-        require_once(WP_PLUGIN_DIR . '/google-analyticator/class.analytics.stats.php');
-        # Create a new API object
-        $api = new GoogleAnalyticsStats();
-        # Get the current accounts accounts
-        $login = $api->checkLogin();
-        $accounts = $api->getSingleProfile();
-        # Verify accounts exist
-        if (count($accounts) <= 0)
-            return 0;
-        # Loop throught the account and return the current account
-        foreach ($accounts AS $account) {
-            # Check if the UID matches the selected UID
-            if ($account['ga:webPropertyId'] == get_option('ga_uid')) {
-                $api->setAccount($account['id']);
-                break;
-            }
-        }
-
-
-        for ($hh = 1; $hh >= 0; $hh--):
-            //MES PARA EL CALCULO   
-            $mesnum = date("m", mktime(0, 0, 0, date("m") - $hh, 1, date("Y")));
-            $mesnum = (int) $mesnum;
-            //AÑO PARA EL CALCULO   
-            $year = date("Y", mktime(0, 0, 0, date("m") - $hh, 1, date("Y")));
-            $year = (int) $year;
-            //MES PARA JSON   
-            $mes = date("M", mktime(0, 0, 0, $mesnum, 1, $year));
-            //PARA QUERY           
-            $lastday = cal_days_in_month(CAL_GREGORIAN, $mesnum, $year);            
-            $desde = date("Y-m-d", mktime(0, 0, 0, $mesnum, 1, $year));
-            $hasta = date("Y-m-d", mktime(0, 0, 0, $mesnum, $lastday, $year));
-            $viewsAnalytics = $api->getMetrics('ga:socialActivities', $desde, $hasta, 'ga:socialActivityPost');
-            echo "<pre>";
-            print_r($viewsAnalytics);
-            echo "</pre>";
-        endfor;
-        die(json_encode($aryview));
-    }
+        if ( false === ( $gaStatIDASocialData = get_transient( 'gaStatIDA' ) ) ) {    
+	        require_once(WP_PLUGIN_DIR . '/google-analyticator/class.analytics.stats.php');
+	        # Create a new API object
+	        $api = new GoogleAnalyticsStats();
+	        # Get the current accounts accounts
+	        $login = $api->checkLogin();
+	        $accounts = $api->getSingleProfile();
+	        # Verify accounts exist
+	        if (count($accounts) <= 0)
+	            return 0;
+	        # Loop throught the account and return the current account
+	        foreach ($accounts AS $account) {
+	            # Check if the UID matches the selected UID
+	            if ($account['ga:webPropertyId'] == get_option('ga_uid')) {
+	                $api->setAccount($account['id']);
+	                break;
+	            }
+	        }
+	        
+	        for ($hh = 11; $hh >= 0; $hh--):
+	            //MES PARA EL CALCULO   
+	            $mesnum = date("m", mktime(0, 0, 0, date("m") - $hh, 1, date("Y")));
+	            $mesnum = (int) $mesnum;
+	            //AÑO PARA EL CALCULO   
+	            $year = date("Y", mktime(0, 0, 0, date("m") - $hh, 1, date("Y")));
+	            $year = (int) $year;
+	            //MES PARA JSON   
+	            $mes = date("M", mktime(0, 0, 0, $mesnum, 1, $year));
+	            //PARA QUERY           
+	            $lastday = cal_days_in_month(CAL_GREGORIAN, $mesnum, $year);            
+	            $desde = date("Y-m-d", mktime(0, 0, 0, $mesnum, 1, $year));
+	            $hasta = date("Y-m-d", mktime(0, 0, 0, $mesnum, $lastday, $year));	            
+	           
+		            $socialInteractions = $api->getMetrics('ga:socialInteractions', $desde, $hasta, 'ga:socialInteractionNetwork');    
+					foreach ($socialInteractions->rows as $redes){
+						$gaStatIDASocialData[$mes][$redes[0]]=(int) $redes[1]; 					
+					}
+					if(!$gaStatIDASocialData[$mes]["Facebook"])$gaStatIDASocialData[$mes]["Facebook"]=0;
+					if(!$gaStatIDASocialData[$mes]["Twitter"])$gaStatIDASocialData[$mes]["Twitter"]=0;
+					
+					
+					$gaStatIDASocialData[$mes]["total_social"]= (int)$socialInteractions->totalsForAllResults['ga:socialInteractions'];
+	
+		            $visitors = $api->getMetrics('ga:visitors', $desde, $hasta, 'ga:deviceCategory');    
+					foreach ($visitors->rows as $devices){
+						$gaStatIDASocialData[$mes][$devices[0]]= (int) $devices[1]; 					
+					}
+					$gaStatIDASocialData[$mes]["total_visitor"]= (int) $visitors->totalsForAllResults['ga:visitors'];		 		
+	        endfor;
+			set_transient('gaStatIDA', $gaStatIDASocialData, 60*60*12 );    
+        }   
+//        delete_transient('gaStatIDA');
+		die(json_encode($gaStatIDASocialData));  
+     }
 
 }
 
