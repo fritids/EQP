@@ -393,7 +393,7 @@ function ajax_zone() {
                     $out .= '<input type="text" required id="log_action_requirements_'. $theCampo .'" name="action_requirements['. $theCampo .']" placeholder="Ingrese su '. $theCampo .'" data-inputtype="'. $theCampo .'" >';
                 }
             }
-            $out .= '<a href="#" title="Ingresar" class="action-ca evtjs ganalytics" data-ga-category="Participacion" data-ga_action="Firmas" data-ga_opt_label="BtnFirma_SinRegIngresar" data-func="ajaxLoginAndVote" >Ingresar y Firmar</a> ';
+            $out .= '<a href="#" title="Ingresar" class="action-ca evtjs" data-func="ajaxLoginAndVote" >Ingresar y Firmar</a> ';
             $out .= '<ul class="allogin clearfix">';
             $out .= '<li class="twitterLogin"><a class="evtjs" data-func="openLightBox" data-width="560" data-height="800"  href="/?authenticate=1">Twitter</a></li>';
             $out .= '<li class="facebookLogin" ><a class="evtjs" data-func="openLightBox" data-width="430" data-height="330" href="/?loginfacebook=1">Facebook</a></li>';
@@ -416,7 +416,7 @@ function ajax_zone() {
                     $out .= '<input type="text" required id="no_log_action_requirements_'. $theCampo .'" name="action_requirements['. $theCampo .']" placeholder="Ingrese su '. $theCampo .'" data-inputtype="'. $theCampo .'" >';
                 }
             }
-            $out .= '<a href="#" title="Registrar" class="action-ca evtjs ganalytics" data-ga-category="Participacion" data-ga_action="Firmas" data-ga_opt_label="BtnFirma_SinRegFirmar" data-func="voteForActionNoLogued" >Firmar</a> ';
+            $out .= '<a href="#" title="Registrar" class="action-ca evtjs" data-func="voteForActionNoLogued" >Firmar</a> ';
             $out .= '</form>';
             $out .= '</div>';
             

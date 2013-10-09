@@ -15,25 +15,27 @@ foreach ($usertodelete AS $utd){
 }
 
 $userList = $wpdb->get_results("
-    SELECT A.meta_value as nombre, B.meta_value as apellido, user_email 
+    SELECT A.meta_value as nombre, B.meta_value as apellido, C.meta_value as status, user_email 
     FROM wp_users 
     JOIN wp_usermeta A 
-    JOIN wp_usermeta B ON (A.user_id = ID AND ID = B.user_id) 
+    JOIN wp_usermeta B 
+    JOIN wp_usermeta C
+    ON (A.user_id = ID AND ID = B.user_id AND C.user_id = ID) 
     WHERE A.meta_key = 'first_name' 
     AND  B.meta_key = 'last_name' 
-    AND user_registered > '$ultima_lista' 
     AND user_email NOT LIKE '%@twitter.com'
-    AND A.meta_key = 'newsletter_suscriber'
-    AND A.meta_value = 'suscriptor'
+    AND C.meta_key = 'newsletter_suscriber'
+    AND user_registered > '$ultima_lista' 
     GROUP BY user_email 
-    ORDER BY user_registered DESC 
-    LIMIT 9000
+    ORDER BY user_registered DESC
+    LIMIT 0, 9000
 ");
 
 $suscriberList = $wpdb->get_results("
     SELECT email, nombre
     FROM wp_newsletter
     WHERE fecha_registro > '$ultima_lista' 
+    ORDER BY fecha_registro DESC
 ");
 
 $fop = fopen( ABSPATH . 'extra/usuarios.txt', 'w');
