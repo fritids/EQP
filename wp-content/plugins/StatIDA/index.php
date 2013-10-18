@@ -14,11 +14,24 @@ class statIDA {
 
     public function __construct() {
         add_action('admin_menu', array($this, 'addmenues'));
+        //widget
+        if (!$_GET["page"]) {
+            add_action('auth_redirect', array($this, 'detectUserRole'));
+            add_action('wp_dashboard_setup', array($this, 'statWidgetInit'));
+        }
     }
 
     public function addmenues() {
-        add_menu_page('Estadísticas', 'Estadísticas', 'manage_options', 'stats-ida', array($this, 'obtener_graficos'));
+        $graph = add_menu_page('Estadísticas', 'Estadísticas', 'manage_options', 'stats-ida', array($this, 'obtener_graficos'));
+        add_action('load-' . $graph, array($this, 'preloadScripts'));
+        add_action('load-index.php', array($this, 'preloadScriptsWidget'));
+    }
+
+    public function preloadScripts() {
         add_action('admin_enqueue_scripts', array($this, 'statscript'));
+    }
+    public function preloadScriptsWidget() {
+        add_action('admin_enqueue_scripts', array($this, 'statscriptWidget'));
     }
 
     public function obtener_graficos() {
@@ -33,7 +46,21 @@ class statIDA {
             </div>';
     }
 
+    public function statscriptWidget() {
+//        if ($_GET["page"] == "stats-ida"):
+        wp_deregister_script('highcharts');
+        wp_register_script('highcharts', 'http://code.highcharts.com/highcharts.js');
+        wp_enqueue_script('highcharts');
+        wp_deregister_script('highchartsexport');
+        wp_register_script('highchartsexport', 'http://code.highcharts.com/modules/exporting.js');
+        wp_enqueue_script('highchartsexport');
+        wp_deregister_script('statsidawidget');
+        wp_register_script('statsidawidget', plugins_url('widget.js', __FILE__));
+        wp_enqueue_script('statsidawidget');
+//        endif;
+    }
     public function statscript() {
+//        if ($_GET["page"] == "stats-ida"):
         wp_deregister_script('highcharts');
         wp_register_script('highcharts', 'http://code.highcharts.com/highcharts.js');
         wp_enqueue_script('highcharts');
@@ -43,6 +70,7 @@ class statIDA {
         wp_deregister_script('statsida');
         wp_register_script('statsida', plugins_url('statsida.js', __FILE__));
         wp_enqueue_script('statsida');
+//        endif;
     }
 
     function jsondata() {
@@ -114,6 +142,8 @@ class statIDA {
                 exit;
             }
             $json_data[$mes] = $tojson;
+            usleep(90909);
+
         endfor;
         print json_encode($json_data);
         exit;
@@ -154,7 +184,7 @@ class statIDA {
                 $hasta = date("Y-m-d", mktime(0, 0, 0, $mesnum, $lastday, $year));
 
                 //nueva metrica
-                
+
                 $socialInteractions = $api->getMetrics('ga:visits', $desde, $hasta, 'ga:socialNetwork');
                 $suma = 0;
                 if (!empty($socialInteractions->rows)) {
@@ -171,24 +201,30 @@ class statIDA {
                         }
                     }
                 }
-                if (!$gaStatIDASocialData[$mes]["Google"])
+                if (!isset($gaStatIDASocialData[$mes]["Google"])) {
                     $gaStatIDASocialData[$mes]["Google"] = 0;
-                if (!$gaStatIDASocialData[$mes]["Facebook"])
+                }
+                if (!isset($gaStatIDASocialData[$mes]["Facebook"])) {
                     $gaStatIDASocialData[$mes]["Facebook"] = 0;
-                if (!$gaStatIDASocialData[$mes]["Twitter"])
+                }
+                if (!isset($gaStatIDASocialData[$mes]["Twitter"])) {
                     $gaStatIDASocialData[$mes]["Twitter"] = 0;
-                if (!$gaStatIDASocialData[$mes]["LinkedIn"])
+                }
+                if (!isset($gaStatIDASocialData[$mes]["LinkedIn"])) {
                     $gaStatIDASocialData[$mes]["LinkedIn"] = 0;
-                if (!$gaStatIDASocialData[$mes]["Disqus"])
+                }
+                if (!isset($gaStatIDASocialData[$mes]["Disqus"])) {
                     $gaStatIDASocialData[$mes]["Disqus"] = 0;
-                if (!$gaStatIDASocialData[$mes]["Pocket"])
+                }
+                if (!isset($gaStatIDASocialData[$mes]["Pocket"])) {
                     $gaStatIDASocialData[$mes]["Pocket"] = 0;
+                }
                 $gaStatIDASocialData[$mes]["total_social"] = $suma;
 
                 //nueva metrica
 
                 $socialInteractions = $api->getMetrics('ga:socialInteractions', $desde, $hasta, 'ga:socialInteractionNetwork');
-                foreach ((array)$socialInteractions->rows as $redes) {
+                foreach ((array) $socialInteractions->rows as $redes) {
                     if ($redes[0] == "Facebook") {
                         $redes[0] = "Facebook_share";
                     }
@@ -209,18 +245,43 @@ class statIDA {
                     $gaStatIDASocialData[$mes]["Google_share"] = 0;
 
                 $gaStatIDASocialData[$mes]["total_share"] = (int) $socialInteractions->totalsForAllResults['ga:socialInteractions'];
-                
+
                 //nueva metrica
                 $visitors = $api->getMetrics('ga:visitors', $desde, $hasta, 'ga:deviceCategory');
                 foreach ($visitors->rows as $devices) {
                     $gaStatIDASocialData[$mes][$devices[0]] = (int) $devices[1];
                 }
                 $gaStatIDASocialData[$mes]["total_visitor"] = (int) $visitors->totalsForAllResults['ga:visitors'];
+                usleep(600000);
             endfor;
             set_transient('gaStatIDA', $gaStatIDASocialData, 60 * 60 * 12);
         }
 //        delete_transient('gaStatIDA');
         die(json_encode($gaStatIDASocialData));
+    }
+
+    public function statWidgetA() {
+        echo '<div id="IDAstatWidgetA" class="graph_publicaciones"></div>';
+    }
+
+    public function statWidgetB() {
+        echo '<div id="IDAstatWidgetB" class="graph_votos"></div>';
+    }
+
+    public function statWidgetInit() {
+        global $userdata;
+        if (in_array('administrator', $userdata->roles)) {
+            wp_add_dashboard_widget('Widget_IDAmetricA', 'Publicaciones', array($this, 'statWidgetA'));
+            wp_add_dashboard_widget('Widget_IDAmetricB', 'Frima y Participa', array($this, 'statWidgetB'));
+        }
+    }
+
+    function detectUserRole() {
+        global $userdata;
+        if (is_admin() && !in_array('administrator', $userdata->roles)) {
+            wp_redirect(home_url());
+            exit;
+        }
     }
 
 }
