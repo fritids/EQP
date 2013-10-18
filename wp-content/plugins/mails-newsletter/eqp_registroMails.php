@@ -79,7 +79,7 @@ function getNewsletterForm() {
 function newsLetterPage_content(){
     global $wpdb;
     
-    $results = $wpdb->get_results("SELECT * FROM $wpdb->newsletter");
+    $userList = eqp_news_get_normalized_list();
 
     $out = '<div id="newsletter-page-wrapper" >';
     $out .= '<h1>Registro de Suscripciones<br>El Quinto Poder</h1>';
@@ -93,12 +93,15 @@ function newsLetterPage_content(){
     $out .= '</tr>';
     
     $count = 1;
-    foreach ((array)$results as $result) {
+    foreach ((array)$userList as $result) {
+        if( $count > 100 ){ break; }
+
         $out .= '<tr>';
         $out .= '<td>'. $count .'</td>';
         $out .= '<td>'. $result->email .'</td>';
-        $out .= '<td>'. $result->nombre .'</td>';
+        $out .= '<td>'. $result->nombre .' '. $result->apellido .'</td>';
         $out .= '</tr>';
+
         $count++;
     }
     
@@ -109,19 +112,63 @@ function newsLetterPage_content(){
     echo $out;
 }
 
+function eqp_news_get_normalized_list(){
+    global $wpdb;
+
+    $normalized_array = array();
+
+    $usuarios_list = $wpdb->get_results("
+        SELECT A.meta_value as nombre, B.meta_value as apellido, C.meta_value as status, user_email 
+        FROM wp_users 
+        JOIN wp_usermeta A 
+        JOIN wp_usermeta B 
+        JOIN wp_usermeta C
+        ON (A.user_id = ID AND ID = B.user_id AND C.user_id = ID) 
+        WHERE A.meta_key = 'first_name' 
+        AND  B.meta_key = 'last_name' 
+        AND user_email NOT LIKE '%@twitter.com'
+        AND C.meta_key = 'newsletter_suscriber'
+        GROUP BY user_email 
+        ORDER BY user_registered DESC
+    ");
+
+    $suscriptores_list = $wpdb->get_results("SELECT * FROM $wpdb->newsletter ORDER BY fecha_registro DESC");
+
+    foreach ((array)$usuarios_list as $user) {
+        $normalized_user = array(
+            'nombre' => $user->nombre,
+            'apellido' => $user->apellido,
+            'email' => $user->user_email
+        );
+
+        $normalized_array[] = (object)$normalized_user;
+    }
+
+    foreach ((array)$suscriptores_list as $user) {
+        $normalized_user = array(
+            'nombre' => $user->nombre,
+            'apellido' => '',
+            'email' => $user->email
+        );
+
+        $normalized_array[] = (object)$normalized_user;
+    }
+
+    return $normalized_array;
+}
+
 
 function csvdata(){
-    global $wpdb;
-     $results = $wpdb->get_results("SELECT * FROM $wpdb->newsletter");
-     $out = "";
-         foreach ((array)$results as $result) {
-             if (!$result->nombre) $result->nombre = " ";
-            $out .=  $result->nombre . "," . $result->email . "\n" ;
-        }
+    $out = "";
+    $userList = eqp_news_get_normalized_list();
+    foreach ((array)$userList as $result) {
+        $out .=  ( $result->nombre .' '. $result->apellido ) . "," . $result->email . "\n" ;
+    }
+
     return $out;
 }
 
-if($_GET["emailngdatacsv"]=="true"){
+if($_GET["emailngdatacsv"] == "true"){
     header("Content-Type: application/csv") ; 
     header('Content-Disposition: attachment; filename="emailing.csv"');    
     echo csvdata();

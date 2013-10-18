@@ -732,8 +732,6 @@ var js = {
         
         $.each($requiredFields, function( index, elem ){ js.validateInput( $(elem) ); });
         
-        
-        
         if( $('#ajaxLoginForm').find('.invalidInput').length === 0 ){
             $.ajax({
                 type: "POST",
@@ -752,6 +750,8 @@ var js = {
                     $('#lightBox-content').css('height',originalHeight);
                 },
                 success: function( data ) {
+                    _gaq.push(['_trackEvent', 'Participacion', 'Firmas', 'BtnFirma_SinRegIngresar']);
+
                     var outMessage = "";
                     $('#ajaxLoader').remove();
                     $('#lightBox-content').css('height','auto');
@@ -819,8 +819,6 @@ var js = {
         
         $.each($requiredFields, function( index, elem ){ js.validateInput( $(elem) ); });
         
-        
-        
         if ( $('#ajaxVoteForm').find('.invalidInput').length === 0 ) {
             $.ajax({
                 type: "POST",
@@ -833,6 +831,8 @@ var js = {
                     $('#lightBox-content').css('height',originalHeight);
                 },
                 success: function( data ) {
+                    _gaq.push(['_trackEvent', 'Participacion', 'Firmas', 'BtnFirma_SinRegFirmar']);
+
                     var outMessage = "";
                     $('#ajaxLoader').remove();
                     $('#lightBox-content').css('height','auto');
